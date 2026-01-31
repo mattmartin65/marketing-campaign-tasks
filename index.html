@@ -1,0 +1,3375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Campaign Tasks - Priority Order</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #e94560;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #16213e;
+            margin-top: 40px;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        h3 {
+            color: #e94560;
+            margin-top: 30px;
+            border-left: 4px solid #e94560;
+            padding-left: 15px;
+        }
+        
+        h4 {
+            color: #0f3460;
+            margin-top: 20px;
+        }
+        
+        .header-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            background: #1a1a2e;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc > ul > li {
+            margin: 10px 0;
+        }
+        
+        .toc ul ul {
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .toc a:hover {
+            color: #e94560;
+            text-decoration: underline;
+        }
+        
+        .toc .priority-1 { color: #e94560; font-weight: bold; }
+        .toc .priority-2 { color: #f39c12; font-weight: bold; }
+        .toc .priority-3 { color: #27ae60; font-weight: bold; }
+        
+        /* Summary Table */
+        .summary-table {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .summary-table h2 {
+            margin-top: 0;
+            background: #e94560;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #1a1a2e;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .priority-badge.p1 { background: #e94560; }
+        .priority-badge.p2 { background: #f39c12; }
+        .priority-badge.p3 { background: #27ae60; }
+        
+        /* Task sections */
+        .task-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .task-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .task-item.done {
+            border-left-color: #27ae60;
+            background: #f0fff4;
+        }
+        
+        /* Checkboxes */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-wrapper label {
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Comment boxes */
+        .comment-box {
+            margin: 15px 0;
+        }
+        
+        .comment-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .comment-box textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.2s;
+        }
+        
+        .comment-box textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Notes fields in table */
+        .notes-field {
+            width: 100%;
+            min-width: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 35px;
+            max-height: 200px;
+            overflow-y: auto;
+            transition: border-color 0.2s, min-height 0.2s;
+        }
+
+        .notes-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .notes-field:not(:placeholder-shown) {
+            min-height: 50px;
+        }
+
+        /* Priority select dropdown */
+        .priority-select {
+            width: 60px;
+            padding: 6px 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .priority-select:hover {
+            border-color: #667eea;
+        }
+
+        .priority-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .priority-select option[value="1"] {
+            background: #ffe6ea;
+            color: #e94560;
+        }
+
+        .priority-select option[value="2"] {
+            background: #fff4e6;
+            color: #f39c12;
+        }
+
+        .priority-select option[value="3"] {
+            background: #e6ffe9;
+            color: #27ae60;
+        }
+
+        /* Go to Task button */
+        .goto-task-btn {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+
+        .goto-task-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .goto-task-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Expand icon */
+        .expand-icon {
+            display: inline-block;
+            width: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .expand-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        /* Expandable task row */
+        .expandable-task {
+            cursor: pointer;
+        }
+
+        .expandable-task:hover {
+            background: #f0f4ff !important;
+        }
+
+        /* Subtask row */
+        .subtask-row {
+            display: none;
+            background: #f8f9fa;
+        }
+
+        .subtask-row.visible {
+            display: table-row;
+        }
+
+        .subtask-row td {
+            padding-left: 40px;
+            font-size: 14px;
+            border-left: 3px solid #667eea;
+        }
+
+        .subtask-row .task-name {
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* Task metadata section in detail view */
+        .task-meta {
+            background: #f0f4ff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .task-meta-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .task-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .task-meta-item label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .priority-select-detail {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: white;
+            min-width: 180px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .priority-select-detail:hover {
+            border-color: #667eea;
+        }
+
+        .priority-select-detail:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .date-input-detail {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+            min-width: 150px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .date-input-detail:hover {
+            border-color: #667eea;
+        }
+
+        .date-input-detail:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Code blocks */
+        pre, code {
+            background: #1a1a2e;
+            color: #a8dadc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+        }
+        
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 1000;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Save button */
+        .save-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+        
+        .save-bar h3 {
+            color: white;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+        
+        .save-bar .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .save-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .save-btn.primary {
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            color: white;
+        }
+        
+        .save-btn.secondary {
+            background: white;
+            color: #1a1a2e;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .save-status {
+            color: #27ae60;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .save-status.show {
+            opacity: 1;
+        }
+        
+        /* Content offset for fixed header */
+        .content {
+            margin-top: 80px;
+        }
+        
+        /* Get from Matt boxes */
+        .get-from-matt {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .get-from-matt strong {
+            color: #856404;
+        }
+        
+        /* Keywords/ads styling */
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .keyword {
+            background: #e8f4fd;
+            color: #1a73e8;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+        }
+        
+        .keyword.negative {
+            background: #fce8e8;
+            color: #d93025;
+        }
+        
+        /* LinkedIn post preview */
+        .linkedin-post {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        
+        /* Print styles */
+        @media print {
+            .save-bar, .back-to-top {
+                display: none;
+            }
+            .content {
+                margin-top: 0;
+            }
+            .task-section {
+                break-inside: avoid;
+            }
+            .gantt-modal {
+                display: none;
+            }
+        }
+
+        /* Gantt Chart Modal */
+        .gantt-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow: auto;
+        }
+
+        .gantt-modal.active {
+            display: block;
+        }
+
+        .gantt-modal-content {
+            background: white;
+            margin: 20px auto;
+            padding: 0;
+            max-width: 95%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+
+        .gantt-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gantt-header h2 {
+            margin: 0;
+            background: none;
+            padding: 0;
+        }
+
+        .gantt-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .gantt-controls label {
+            font-size: 14px;
+        }
+
+        .gantt-controls select {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            background: #e94560;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #ff6b6b;
+            transform: rotate(90deg);
+        }
+
+        .gantt-container {
+            padding: 30px;
+            overflow-x: auto;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .gantt-chart {
+            min-width: 1200px;
+        }
+
+        .gantt-timeline {
+            display: flex;
+            margin-bottom: 10px;
+            padding-left: 300px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .gantt-day {
+            flex: 1;
+            min-width: 40px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px;
+            color: #667eea;
+        }
+
+        .gantt-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .gantt-task-label {
+            width: 300px;
+            padding-right: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gantt-task-label .priority-badge {
+            flex-shrink: 0;
+        }
+
+        .gantt-task-name {
+            flex: 1;
+        }
+
+        .gantt-timeline-row {
+            flex: 1;
+            display: flex;
+            position: relative;
+            height: 35px;
+        }
+
+        .gantt-bar-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .gantt-bar {
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .gantt-bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .gantt-bar.priority-1 {
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+        }
+
+        .gantt-bar.priority-2 {
+            background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+        }
+
+        .gantt-bar.priority-3 {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .gantt-bar.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .gantt-edit-controls {
+            display: none;
+            position: fixed;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 2100;
+            min-width: 320px;
+            max-width: 400px;
+        }
+
+        .gantt-edit-controls.active {
+            display: block;
+        }
+
+        .gantt-edit-field {
+            margin-bottom: 10px;
+        }
+
+        .gantt-edit-field label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .gantt-edit-field input,
+        .gantt-edit-field select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .gantt-edit-buttons {
+            display: flex;
+            gap: 5px;
+            justify-content: flex-end;
+        }
+
+        .gantt-edit-buttons button {
+            padding: 5px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .gantt-edit-buttons .save {
+            background: #667eea;
+            color: white;
+        }
+
+        .gantt-edit-buttons .cancel {
+            background: #ddd;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Save Bar -->
+    <div class="save-bar">
+        <h3>📋 Marketing Tasks - Petra</h3>
+        <div class="buttons">
+            <a href="detail_plans.html" class="save-btn secondary" style="text-decoration: none;">📚 Best Practices</a>
+            <button class="save-btn secondary" onclick="openGanttChart()">📊 Gantt Chart</button>
+            <span class="save-status" id="saveStatus">✓ Saved</span>
+            <button class="save-btn secondary" onclick="exportHTML()">📥 Export HTML</button>
+            <button class="save-btn primary" onclick="saveProgress()">💾 Save Progress</button>
+        </div>
+    </div>
+
+    <!-- Gantt Chart Modal -->
+    <div id="ganttModal" class="gantt-modal">
+        <div class="gantt-modal-content">
+            <div class="gantt-header">
+                <h2>📊 Project Gantt Chart</h2>
+                <div class="gantt-controls">
+                    <label>Sort by:</label>
+                    <select id="ganttSort" onchange="sortGanttChart()">
+                        <option value="priority">Priority</option>
+                        <option value="project">Project</option>
+                        <option value="platform">Platform</option>
+                        <option value="timeline">Timeline</option>
+                    </select>
+                    <button class="close-btn" onclick="closeGanttChart()">✕</button>
+                </div>
+            </div>
+            <div class="gantt-container" id="ganttContainer">
+                <!-- Gantt chart will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Header -->
+        <div class="header-info">
+            <h1>📋 Marketing Campaign Tasks - Priority Order</h1>
+            <p><strong>For:</strong> Petra</p>
+            <p><strong>Platform:</strong> Brevo, Google Ads, LinkedIn</p>
+            <p><strong>Date:</strong> 31 January 2026</p>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="summary-table" id="summary">
+            <h2>📊 Task Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Task</th>
+                        <th>Type</th>
+                        <th>Items</th>
+                        <th>Actions</th>
+                        <th>Done</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-task-id="summary-1.1" class="expandable-task" onclick="toggleSubtasks('summary-1.1', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-1.1" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1" selected>P1</option>
+                                <option value="2">P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-1.1">▶</span> <span class="task-name">Medflow Gastro Emails</span></td>
+                        <td>Email</td>
+                        <td>4 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-1.1', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-1.1" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-1.1" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-1.2" class="expandable-task" onclick="toggleSubtasks('summary-1.2', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-1.2" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1" selected>P1</option>
+                                <option value="2">P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-1.2">▶</span> <span class="task-name">Medflow Rheum Emails</span></td>
+                        <td>Email</td>
+                        <td>4 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-1.2', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-1.2" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-1.2" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-1.3" class="expandable-task" onclick="toggleSubtasks('summary-1.3', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-1.3" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1" selected>P1</option>
+                                <option value="2">P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-1.3">▶</span> <span class="task-name">Medflow Gastro Ads</span></td>
+                        <td>Google Ads</td>
+                        <td>1 campaign</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-1.3', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-1.3" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-1.3" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-1.4" class="expandable-task" onclick="toggleSubtasks('summary-1.4', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-1.4" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1" selected>P1</option>
+                                <option value="2">P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-1.4">▶</span> <span class="task-name">Medflow Rheum Ads</span></td>
+                        <td>Google Ads</td>
+                        <td>1 campaign</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-1.4', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-1.4" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-1.4" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-2.1" class="expandable-task" onclick="toggleSubtasks('summary-2.1', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-2.1" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2" selected>P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-2.1">▶</span> <span class="task-name">Medcast General Emails</span></td>
+                        <td>Email</td>
+                        <td>4 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-2.1', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-2.1" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-2.1" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-2.2" class="expandable-task" onclick="toggleSubtasks('summary-2.2', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-2.2" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2" selected>P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-2.2">▶</span> <span class="task-name">Medcast Specialty Emails</span></td>
+                        <td>Email</td>
+                        <td>14 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-2.2', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-2.2" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-2.2" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-2.3" class="expandable-task" onclick="toggleSubtasks('summary-2.3', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-2.3" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2" selected>P2</option>
+                                <option value="3">P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-2.3">▶</span> <span class="task-name">Medcast Ads</span></td>
+                        <td>Google Ads</td>
+                        <td>1 campaign</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-2.3', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-2.3" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-2.3" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-3.1" class="expandable-task" onclick="toggleSubtasks('summary-3.1', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-3.1" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2">P2</option>
+                                <option value="3" selected>P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-3.1">▶</span> <span class="task-name">Medflow Sponsor Emails</span></td>
+                        <td>Email</td>
+                        <td>4 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-3.1', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-3.1" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-3.1" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-3.2" class="expandable-task" onclick="toggleSubtasks('summary-3.2', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-3.2" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2">P2</option>
+                                <option value="3" selected>P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-3.2">▶</span> <span class="task-name">Medcast Sponsor Emails</span></td>
+                        <td>Email</td>
+                        <td>4 emails</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-3.2', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-3.2" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-3.2" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-3.3" class="expandable-task" onclick="toggleSubtasks('summary-3.3', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-3.3" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2">P2</option>
+                                <option value="3" selected>P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-3.3">▶</span> <span class="task-name">Medflow LinkedIn</span></td>
+                        <td>LinkedIn</td>
+                        <td>8 posts</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-3.3', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-3.3" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-3.3" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                    <tr data-task-id="summary-3.4" class="expandable-task" onclick="toggleSubtasks('summary-3.4', event)">
+                        <td>
+                            <select class="priority-select" data-priority-for="summary-3.4" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2">P2</option>
+                                <option value="3" selected>P3</option>
+                            </select>
+                        </td>
+                        <td><span class="expand-icon" id="expand-icon-summary-3.4">▶</span> <span class="task-name">Medcast LinkedIn</span></td>
+                        <td>LinkedIn</td>
+                        <td>8 posts</td>
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('task-3.4', event)">Go to Task</button>
+                        </td>
+                        <td><input type="checkbox" data-task="summary-3.4" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="summary-3.4" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc" id="toc">
+            <h2>📑 Contents</h2>
+            <ul>
+                <li><a href="#summary">📊 Task Summary</a></li>
+                <li class="priority-1"><a href="#priority-1">🔴 Priority 1: Medflow Specialist Campaigns</a>
+                    <ul>
+                        <li><a href="#task-1.1">Task 1.1: Gastroenterology Email Series</a></li>
+                        <li><a href="#task-1.2">Task 1.2: Rheumatology Email Series</a></li>
+                        <li><a href="#task-1.3">Task 1.3: Medflow Google Ads - Gastroenterology</a></li>
+                        <li><a href="#task-1.4">Task 1.4: Medflow Google Ads - Rheumatology</a></li>
+                    </ul>
+                </li>
+                <li class="priority-2"><a href="#priority-2">🟠 Priority 2: Medcast Specialist Campaigns</a>
+                    <ul>
+                        <li><a href="#task-2.1">Task 2.1: Medcast General Email Series</a></li>
+                        <li><a href="#task-2.2">Task 2.2: Medcast Specialty Emails</a></li>
+                        <li><a href="#task-2.3">Task 2.3: Medcast Google Ads</a></li>
+                    </ul>
+                </li>
+                <li class="priority-3"><a href="#priority-3">🟡 Priority 3: Industry/Sponsor Campaigns</a>
+                    <ul>
+                        <li><a href="#task-3.1">Task 3.1: Medflow Sponsor Emails</a></li>
+                        <li><a href="#task-3.2">Task 3.2: Medcast Sponsor Emails</a></li>
+                        <li><a href="#task-3.3">Task 3.3: Medflow LinkedIn</a></li>
+                        <li><a href="#task-3.4">Task 3.4: Medcast LinkedIn</a></li>
+                    </ul>
+                </li>
+                <li><a href="#from-matt">📦 Things to Get from Matt</a></li>
+            </ul>
+        </div>
+
+        <!-- PRIORITY 1 -->
+        <h2 id="priority-1">🔴 PRIORITY 1: Medflow Specialist Campaigns</h2>
+        <p><em>These drive direct revenue from new users</em></p>
+
+        <!-- Task 1.1 -->
+        <div class="task-section" id="task-1.1">
+            <h3>Task 1.1: Gastroenterology Email Series (4 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-1.1" onchange="updateDetailPriority(this)">
+                            <option value="1" selected>P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.1" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Gastro specialist database, registration landing page URL
+            </div>
+
+            <h4>Email 1: Introduction</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.1-email1" data-task="1.1-email1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.1-email1">Done</label>
+                </div>
+                <p><strong>Subject A:</strong> "Dr {{first_name}}, still doing PBS forms by hand?"</p>
+                <p><strong>Subject B:</strong> "Gastro PBS forms — there's a better way"</p>
+                <p><strong>Send:</strong> Day 0</p>
+                <p><strong>Content:</strong></p>
+                <ul>
+                    <li>Hook: PBS paperwork wastes 30+ min/day</li>
+                    <li>Introduce Medflow (2 sentences max)</li>
+                    <li>Social proof: "Join X gastroenterologists already using Medflow"</li>
+                    <li>CTA button: "Learn More" → landing page</li>
+                </ul>
+                <p><strong>A/B test:</strong> Subject lines, send to 20%, winner to 80%</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.1-email1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 2: Features</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.1-email2" data-task="1.1-email2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.1-email2">Done</label>
+                </div>
+                <p><strong>Subject A:</strong> "How Dr. Smith saves 30 min/day on PBS"</p>
+                <p><strong>Subject B:</strong> "3 features gastroenterologists love"</p>
+                <p><strong>Send:</strong> Day 3</p>
+                <p><strong>Content:</strong></p>
+                <ul>
+                    <li>Hook: "What if PBS forms took 2 minutes instead of 12?"</li>
+                    <li>3 bullet features: Auto-populate, digital submission, compliance built-in</li>
+                    <li>CTA button: "Start Free Trial"</li>
+                </ul>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.1-email2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 3: Social Proof</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.1-email3" data-task="1.1-email3" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.1-email3">Done</label>
+                </div>
+                <p><strong>Subject A:</strong> "Your PBS workflow, streamlined"</p>
+                <p><strong>Subject B:</strong> "See Medflow in action (2 min video)"</p>
+                <p><strong>Send:</strong> Day 6</p>
+                <p><strong>Content:</strong></p>
+                <ul>
+                    <li>Testimonial quote from user (get from Matt)</li>
+                    <li>Specific result: "Saved 4 hours per week"</li>
+                    <li>CTA button: "Watch Demo"</li>
+                </ul>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.1-email3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 4: Conversion</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.1-email4" data-task="1.1-email4" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.1-email4">Done</label>
+                </div>
+                <p><strong>Subject A:</strong> "Ready to try Medflow?"</p>
+                <p><strong>Subject B:</strong> "Start your free trial this week"</p>
+                <p><strong>Send:</strong> Day 9</p>
+                <p><strong>Content:</strong></p>
+                <ul>
+                    <li>Direct CTA, overcome objections</li>
+                    <li>"No credit card required, 5 min setup"</li>
+                    <li>CTA button: "Register Now"</li>
+                </ul>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.1-email4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Automation Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.1-auto" data-task="1.1-auto" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.1-auto">Done - Workflow created in Brevo</label>
+                </div>
+                <ul>
+                    <li>If opened Email 1 but no click → reminder after 24h</li>
+                    <li>If registered → exit campaign</li>
+                    <li>Tag converters for onboarding sequence</li>
+                </ul>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.1-auto" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 1.2 -->
+        <div class="task-section" id="task-1.2">
+            <h3>Task 1.2: Rheumatology Email Series (4 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-1.2" onchange="updateDetailPriority(this)">
+                            <option value="1" selected>P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.2" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Rheum specialist database, registration landing page URL
+            </div>
+
+            <h4>Email 1: Introduction</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.2-email1" data-task="1.2-email1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.2-email1">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Rheumatology PBS forms — digital at last"</p>
+                <p><strong>Send:</strong> Day 0</p>
+                <p><strong>Content:</strong> Same structure as gastro, rheum-specific language</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.2-email1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 2: Features</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.2-email2" data-task="1.2-email2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.2-email2">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Biologics PBS authorities in 3 clicks"</p>
+                <p><strong>Send:</strong> Day 3</p>
+                <p><strong>Content:</strong> Focus on biologics/DMARDs workflows</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.2-email2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 3: Social Proof</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.2-email3" data-task="1.2-email3" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.2-email3">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "How rheumatologists are saving hours/week"</p>
+                <p><strong>Send:</strong> Day 6</p>
+                <p><strong>Content:</strong> Rheum testimonial or case study</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.2-email3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 4: Conversion</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.2-email4" data-task="1.2-email4" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.2-email4">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Start your free Medflow trial"</p>
+                <p><strong>Send:</strong> Day 9</p>
+                <p><strong>Content:</strong> Direct CTA with free trial offer</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.2-email4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Automation Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.2-auto" data-task="1.2-auto" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.2-auto">Done - Workflow created in Brevo</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.2-auto" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 1.3 -->
+        <div class="task-section" id="task-1.3">
+            <h3>Task 1.3: Medflow Google Ads - Gastroenterology</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-1.3" onchange="updateDetailPriority(this)">
+                            <option value="1" selected>P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.3" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Daily budget, landing page URL
+            </div>
+
+            <h4>Campaign Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.3-setup" data-task="1.3-setup" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.3-setup">Done - Campaign created in Google Ads</label>
+                </div>
+                <p><strong>Type:</strong> Search only | <strong>Location:</strong> Australia | <strong>Language:</strong> English</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.3-setup" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Group: PBS Forms - Keywords</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.3-keywords" data-task="1.3-keywords" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.3-keywords">Done</label>
+                </div>
+                <p><strong>Keywords:</strong></p>
+                <div class="keywords">
+                    <span class="keyword">[pbs authority gastroenterology]</span>
+                    <span class="keyword">[gastro pbs forms]</span>
+                    <span class="keyword">"pbs forms for gastroenterologists"</span>
+                    <span class="keyword">"digital pbs authority"</span>
+                    <span class="keyword">"gastroenterology pbs software"</span>
+                </div>
+                <p><strong>Negative keywords:</strong></p>
+                <div class="keywords">
+                    <span class="keyword negative">free template</span>
+                    <span class="keyword negative">download</span>
+                    <span class="keyword negative">pdf</span>
+                    <span class="keyword negative">jobs</span>
+                    <span class="keyword negative">training</span>
+                    <span class="keyword negative">course</span>
+                    <span class="keyword negative">student</span>
+                    <span class="keyword negative">salary</span>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.3-keywords" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Responsive Search Ad</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.3-ad" data-task="1.3-ad" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.3-ad">Done</label>
+                </div>
+                <p><strong>Headlines (use all 15):</strong></p>
+<pre>1. PBS Authority Forms for Gastro
+2. Digital PBS Forms | Gastroenterology
+3. Save 30 Min/Day on PBS Paperwork
+4. Gastro PBS Portal | Try Free
+5. Stop Handwriting PBS Forms
+6. PBS Authority Made Easy
+7. For Australian Gastroenterologists
+8. TGA Compliant PBS Forms
+9. Auto-Populate Patient Data
+10. Digital Submission
+11. Free Trial | No Credit Card
+12. Join 100+ Gastro Practices
+13. Setup in 5 Minutes
+14. Medflow PBS Portal
+15. Streamline Your Practice</pre>
+                <p><strong>Descriptions (use all 4):</strong></p>
+<pre>1. Medflow digitizes PBS authority applications for gastroenterologists. Auto-populate, submit digitally, stay compliant. Start your free trial today.
+2. Tired of PBS paperwork? Medflow handles authority forms so you can focus on patients. Built for Australian gastro practices. Try free.
+3. Join gastroenterologists saving 30+ minutes daily on PBS forms. Digital submission, auto-population, full compliance.
+4. Purpose-built PBS authority portal for gastroenterology. IBD, hepatology, and more. Trusted by Australian specialists.</pre>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.3-ad" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Extensions</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.3-ext" data-task="1.3-ext" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.3-ext">Done - All extensions added</label>
+                </div>
+                <p><strong>Sitelinks:</strong> Features, Pricing, Demo, Contact Us</p>
+                <p><strong>Callouts:</strong> Free Trial, Australian Made, TGA Compliant, 5 Min Setup</p>
+                <p><strong>Structured snippets:</strong> Specialties: IBD, Hepatology, Endoscopy</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.3-ext" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 1.4 -->
+        <div class="task-section" id="task-1.4">
+            <h3>Task 1.4: Medflow Google Ads - Rheumatology</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-1.4" onchange="updateDetailPriority(this)">
+                            <option value="1" selected>P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.4" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Daily budget, landing page URL
+            </div>
+
+            <h4>Campaign Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.4-setup" data-task="1.4-setup" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.4-setup">Done - Campaign created</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.4-setup" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Group: PBS Forms - Keywords</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.4-keywords" data-task="1.4-keywords" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.4-keywords">Done</label>
+                </div>
+                <div class="keywords">
+                    <span class="keyword">[pbs authority rheumatology]</span>
+                    <span class="keyword">[rheum pbs forms]</span>
+                    <span class="keyword">"biologics pbs authority"</span>
+                    <span class="keyword">"dmards pbs forms"</span>
+                    <span class="keyword">"rheumatology pbs software"</span>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.4-keywords" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Responsive Search Ad</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.4-ad" data-task="1.4-ad" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.4-ad">Done</label>
+                </div>
+<pre>Headlines:
+1. PBS Authority Forms for Rheum
+2. Biologics PBS | Digital Forms
+3. Rheumatology PBS Portal
+4. DMARDs Authority Made Easy
+5. Save Time on PBS Paperwork
+6. For Australian Rheumatologists
+7. Auto-Populate Patient Data
+8. Digital PBS Submission
+9. Free Trial Available
+10. TGA Compliant Forms
+11. Medflow for Rheumatology
+12. Setup in Minutes
+13. No More Handwriting Forms
+14. Streamline PBS Authorities
+15. Try Medflow Free
+
+Descriptions:
+1. Medflow digitizes PBS authority applications for rheumatologists. Biologics, DMARDs, and more. Auto-populate and submit digitally. Try free.
+2. Streamline PBS authorities for your rheumatology practice. Purpose-built forms, digital submission, full compliance. Start free.
+3. Join rheumatologists saving hours weekly on PBS forms. Built for biologics and DMARDs workflows. No credit card required.
+4. Digital PBS authority portal for rheumatology. Auto-population, instant submission, compliance tracking. Australian-made.</pre>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.4-ad" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Extensions</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-1.4-ext" data-task="1.4-ext" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-1.4-ext">Done - All extensions added</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="1.4-ext" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIORITY 2 -->
+        <h2 id="priority-2">🟠 PRIORITY 2: Medcast Specialist Campaigns</h2>
+        <p><em>Drive app downloads and engagement</em></p>
+
+        <!-- Task 2.1 -->
+        <div class="task-section" id="task-2.1">
+            <h3>Task 2.1: Medcast General Email Series (4 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-2.1" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2" selected>P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.1" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Specialist database (all specialties), app store links, registration URL
+            </div>
+
+            <h4>Email 1: Introduction</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.1-email1" data-task="2.1-email1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.1-email1">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Medical education you can listen to"</p>
+                <p><strong>Send:</strong> Day 0</p>
+                <p><strong>Content:</strong> Hook about no time to read journals, introduce audio format, CTA: Learn More</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.1-email1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 2: Features</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.1-email2" data-task="2.1-email2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.1-email2">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Why 10,000+ specialists learn with audio"</p>
+                <p><strong>Send:</strong> Day 4</p>
+                <p><strong>Content:</strong> Why audio works, features (auto-curated, weighted ratings, CPD), CTA: See What's Available</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.1-email2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 3: Personalisation</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.1-email3" data-task="2.1-email3" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.1-email3">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Your specialty, your pace, your commute"</p>
+                <p><strong>Send:</strong> Day 8</p>
+                <p><strong>Content:</strong> Specialty-specific content, offline mode, CTA: Choose Your Specialty</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.1-email3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 4: Conversion</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.1-email4" data-task="2.1-email4" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.1-email4">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Download Medcast Media — it's free"</p>
+                <p><strong>Send:</strong> Day 12</p>
+                <p><strong>Content:</strong> Direct download CTA, App Store + Play Store buttons, "Free for Australian specialists"</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.1-email4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Automation Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.1-auto" data-task="2.1-auto" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.1-auto">Done - Workflow created in Brevo</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.1-auto" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 2.2 -->
+        <div class="task-section" id="task-2.2">
+            <h3>Task 2.2: Medcast Specialty Emails (7 specialties × 2 = 14 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-2.2" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2" selected>P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.2" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Segmented lists by specialty, deep links to specialty content
+            </div>
+
+            <h4>Gastroenterology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-gastro1" data-task="2.2-gastro1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-gastro1">Email 1: "IBD, hepatology & more — audio updates for gastro"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-gastro2" data-task="2.2-gastro2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-gastro2">Email 2: "Gastro CME on your commute"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-gastro" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Rheumatology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-rheum1" data-task="2.2-rheum1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-rheum1">Email 1: "Biologics & autoimmune — listen now"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-rheum2" data-task="2.2-rheum2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-rheum2">Email 2: "Rheumatology audio rounds"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-rheum" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Cardiology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-cardio1" data-task="2.2-cardio1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-cardio1">Email 1: "Heart failure, AFib updates — audio"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-cardio2" data-task="2.2-cardio2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-cardio2">Email 2: "Cardiology podcasts curated for you"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-cardio" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Nephrology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-neph1" data-task="2.2-neph1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-neph1">Email 1: "CKD, dialysis advances — listen"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-neph2" data-task="2.2-neph2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-neph2">Email 2: "Nephrology updates, on the go"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-neph" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Medical Oncology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-onc1" data-task="2.2-onc1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-onc1">Email 1: "Immunotherapy, trials — audio briefs"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-onc2" data-task="2.2-onc2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-onc2">Email 2: "Oncology education that fits your day"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-onc" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Haematology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-haem1" data-task="2.2-haem1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-haem1">Email 1: "Blood cancers, coag — audio updates"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-haem2" data-task="2.2-haem2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-haem2">Email 2: "Haematology content, curated"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-haem" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ophthalmology</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-ophth1" data-task="2.2-ophth1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-ophth1">Email 1: "Retina, glaucoma updates — listen"</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.2-ophth2" data-task="2.2-ophth2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.2-ophth2">Email 2: "Ophthalmology audio for busy clinicians"</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.2-ophth" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 2.3 -->
+        <div class="task-section" id="task-2.3">
+            <h3>Task 2.3: Medcast Google Ads</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-2.3" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2" selected>P2 - Medium Priority</option>
+                            <option value="3">P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.3" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Daily budget, app store links, landing page
+            </div>
+
+            <h4>Campaign Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.3-setup" data-task="2.3-setup" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.3-setup">Done - Campaign created</label>
+                </div>
+                <p><strong>Type:</strong> Search | <strong>Location:</strong> Australia | <strong>Language:</strong> English</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.3-setup" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Group: Medical Education - Keywords</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.3-keywords" data-task="2.3-keywords" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.3-keywords">Done</label>
+                </div>
+                <div class="keywords">
+                    <span class="keyword">"medical education app"</span>
+                    <span class="keyword">"medical podcasts for doctors"</span>
+                    <span class="keyword">"cme audio"</span>
+                    <span class="keyword">"cpd podcast australia"</span>
+                    <span class="keyword">[medical education audio]</span>
+                    <span class="keyword">"doctor podcasts australia"</span>
+                </div>
+                <p><strong>Negative keywords:</strong></p>
+                <div class="keywords">
+                    <span class="keyword negative">student</span>
+                    <span class="keyword negative">nursing</span>
+                    <span class="keyword negative">free download</span>
+                    <span class="keyword negative">salary</span>
+                    <span class="keyword negative">jobs</span>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.3-keywords" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Responsive Search Ad</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.3-ad" data-task="2.3-ad" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.3-ad">Done</label>
+                </div>
+<pre>Headlines:
+1. Medical Education Audio App
+2. Listen & Learn | Medcast Media
+3. CME on Your Commute
+4. Curated Medical Podcasts
+5. For Australian Specialists
+6. Free Download | iOS & Android
+7. Specialty-Specific Content
+8. Auto-Curated Content
+9. Track Your CPD Hours
+10. Medical Education That Fits
+11. Trusted by 10,000+ Doctors
+12. Offline Mode Available
+13. New Content Weekly
+14. From Top Medical Journals
+15. Download Medcast Media
+
+Descriptions:
+1. Medcast Media curates the best medical content in audio format. Listen on your commute, at the gym, or between patients. Free for specialists.
+2. Too busy to read journals? Listen instead. Medcast Media delivers specialty-specific medical education to your phone. Download free.
+3. Auto-curated medical podcasts and article summaries. Weighted ratings surface the best content. Track CPD. Free for Australian doctors.
+4. Medical education designed for busy specialists. Audio format, offline mode, specialty targeting. Join 10,000+ doctors on Medcast Media.</pre>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.3-ad" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Ad Extensions</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-2.3-ext" data-task="2.3-ext" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-2.3-ext">Done - All extensions added</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="2.3-ext" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIORITY 3 -->
+        <h2 id="priority-3">🟡 PRIORITY 3: Industry/Sponsor Campaigns</h2>
+        <p><em>Revenue from pharma partnerships</em></p>
+
+        <!-- Task 3.1 -->
+        <div class="task-section" id="task-3.1">
+            <h3>Task 3.1: Medflow Sponsor Email Series (4 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-3.1" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3" selected>P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.1" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Pharma marketing contacts, demo site URL, metrics, pricing
+            </div>
+
+            <h4>Email 1: Introduction</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.1-email1" data-task="3.1-email1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.1-email1">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Reach gastroenterologists at point-of-prescribing"</p>
+                <p><strong>Send:</strong> Day 0</p>
+                <p><strong>Content:</strong> Hook about brand appearing when specialist writes PBS authority, intro to Medflow</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.1-email1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 2: Value Proposition</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.1-email2" data-task="3.1-email2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.1-email2">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Inside Medflow: Where your brand meets prescribers"</p>
+                <p><strong>Send:</strong> Day 7</p>
+                <p><strong>Content:</strong> How sponsors integrate, screenshot/GIF of placement, CTA: Reply for demo</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.1-email2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 3: Metrics</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.1-email3" data-task="3.1-email3" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.1-email3">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Medflow sponsor metrics: [X] specialists, [Y] forms/month"</p>
+                <p><strong>Send:</strong> Day 14</p>
+                <p><strong>Content:</strong> Platform metrics (get numbers from Matt), attach sponsor prospectus PDF</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.1-email3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 4: CTA</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.1-email4" data-task="3.1-email4" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.1-email4">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "15 min call? Let's discuss Medflow sponsorship"</p>
+                <p><strong>Send:</strong> Day 21</p>
+                <p><strong>Content:</strong> Direct meeting request, Calendly link</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.1-email4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Automation Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.1-auto" data-task="3.1-auto" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.1-auto">Done - Workflow created in Brevo</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.1-auto" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 3.2 -->
+        <div class="task-section" id="task-3.2">
+            <h3>Task 3.2: Medcast Sponsor Email Series (4 emails)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-3.2" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3" selected>P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.2" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Pharma contacts, sponsor portal URL, metrics, pricing
+            </div>
+
+            <h4>Email 1: Introduction</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.2-email1" data-task="3.2-email1" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.2-email1">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Reach engaged specialists through audio"</p>
+                <p><strong>Send:</strong> Day 0</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.2-email1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 2: Metrics</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.2-email2" data-task="3.2-email2" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.2-email2">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Medcast Media: [X] specialists, [Y] hours listened"</p>
+                <p><strong>Send:</strong> Day 7</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.2-email2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 3: Options</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.2-email3" data-task="3.2-email3" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.2-email3">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "Sponsored content that specialists actually hear"</p>
+                <p><strong>Send:</strong> Day 14</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.2-email3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Email 4: CTA</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.2-email4" data-task="3.2-email4" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.2-email4">Done</label>
+                </div>
+                <p><strong>Subject:</strong> "See the Medcast sponsor portal — 15 min demo"</p>
+                <p><strong>Send:</strong> Day 21</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.2-email4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Automation Setup</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.2-auto" data-task="3.2-auto" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.2-auto">Done - Workflow created in Brevo</label>
+                </div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.2-auto" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 3.3 -->
+        <div class="task-section" id="task-3.3">
+            <h3>Task 3.3: Medflow LinkedIn Content (4 weeks)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-3.3" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3" selected>P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.3" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Company page access, any existing assets/images
+            </div>
+
+            <h4>Week 1</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w1-tue" data-task="3.3-w1-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w1-tue">Tuesday - Problem post</label>
+                </div>
+                <div class="linkedin-post">PBS authority forms haven't changed in 20 years.
+
+Meanwhile:
+→ Specialists waste 30+ min/day on paperwork
+→ Handwriting leads to errors and rejections
+→ No digital submission option (until now)
+
+We built Medflow to fix this.
+
+What's your biggest PBS frustration? 👇
+
+#HealthTech #PBS #Gastroenterology #Rheumatology #AustralianHealthcare</div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w1-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w1-thu" data-task="3.3-w1-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w1-thu">Thursday - Carousel post: "5 things specialists hate about PBS forms"</label>
+                </div>
+                <p>Slides: Title → Handwriting → Duplicate data → Faxing → No tracking → Medflow CTA</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w1-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 2</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w2-tue" data-task="3.3-w2-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w2-tue">Tuesday - Video post (30-sec product demo)</label>
+                </div>
+                <p>Caption: "PBS forms in under 2 minutes. Here's how Medflow works."</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w2-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w2-thu" data-task="3.3-w2-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w2-thu">Thursday - Poll: "How long do your PBS authority forms take?"</label>
+                </div>
+                <p>Options: Less than 5 min / 5-10 min / 10-20 min / 20+ min (pain)</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w2-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 3</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w3-tue" data-task="3.3-w3-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w3-tue">Tuesday - Testimonial post</label>
+                </div>
+                <p>Quote graphic: "Since switching to Medflow, I've saved [X] hours per week" — Dr [Name]</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w3-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w3-thu" data-task="3.3-w3-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w3-thu">Thursday - Industry post</label>
+                </div>
+                <div class="linkedin-post">Pharma marketers, a question:
+
+Where does your brand appear in a specialist's workflow?
+
+Most touchpoints are passive — journal ads, conference booths, rep visits.
+
+But what about the moment they're actively prescribing?
+
+Medflow puts sponsor messaging at point-of-care.
+
+DM me if you want to see how it works.
+
+#PharmaMarketing #HealthTech #DigitalHealth</div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w3-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 4</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w4-tue" data-task="3.3-w4-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w4-tue">Tuesday - Milestone post</label>
+                </div>
+                <p>"[X] specialists now use Medflow to streamline PBS authorities. Thank you for trusting us. 🙏"</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w4-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.3-w4-thu" data-task="3.3-w4-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.3-w4-thu">Thursday - Educational post</label>
+                </div>
+                <p>"The PBS digital submission process — a quick guide" + link to blog/PDF</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.3-w4-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 3.4 -->
+        <div class="task-section" id="task-3.4">
+            <h3>Task 3.4: Medcast LinkedIn Content (4 weeks)</h3>
+
+            <div class="task-meta">
+                <div class="task-meta-row">
+                    <div class="task-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="summary-3.4" onchange="updateDetailPriority(this)">
+                            <option value="1">P1 - High Priority</option>
+                            <option value="2">P2 - Medium Priority</option>
+                            <option value="3" selected>P3 - Low Priority</option>
+                        </select>
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.4" onchange="saveDateProgress()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="get-from-matt">
+                <strong>Get from Matt:</strong> Company page access, app screenshots, any video
+            </div>
+
+            <h4>Week 1</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w1-tue" data-task="3.4-w1-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w1-tue">Tuesday - Hook post</label>
+                </div>
+                <div class="linkedin-post">Hot take: Most CME is designed for people with unlimited time.
+
+Reality:
+→ 10 minutes between patients
+→ Exhausted after clinic
+→ Journals pile up unread
+
+Medcast Media is CME for how specialists actually live.
+
+Audio format. Listen anywhere.
+
+What's your CME reality? 👇
+
+#MedicalEducation #CME #CPD #DoctorLife</div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w1-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w1-thu" data-task="3.4-w1-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w1-thu">Thursday - App walkthrough video (60 sec)</label>
+                </div>
+                <p>Caption: "Medical education in your pocket. Here's a quick tour of Medcast Media."</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w1-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 2</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w2-tue" data-task="3.4-w2-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w2-tue">Tuesday - Carousel: "5 ways to fit CME into your day"</label>
+                </div>
+                <p>Slides: Title → Commute → Gym → Between patients → Cooking → Download CTA</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w2-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w2-fri" data-task="3.4-w2-fri" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w2-fri">Friday - Industry post</label>
+                </div>
+                <div class="linkedin-post">Question for pharma marketers:
+
+What's your completion rate on sponsored content?
+
+Video: ~20%
+Articles: ~30%
+Audio: 70-80%
+
+Audio is consumed during otherwise-dead time.
+
+Medcast Media puts your content where specialists are paying attention.
+
+DM for sponsor info.
+
+#PharmaMarketing #MedicalEducation #AudioContent</div>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w2-fri" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 3</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w3-tue" data-task="3.4-w3-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w3-tue">Tuesday - Milestone post</label>
+                </div>
+                <p>"[X] hours of medical content listened on Medcast Media this month. 🎧"</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w3-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w3-thu" data-task="3.4-w3-thu" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w3-thu">Thursday - Poll: "Where do you do most of your medical learning?"</label>
+                </div>
+                <p>Options: Reading at desk / Commuting / Conferences / Gym/exercise</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w3-thu" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <h4>Week 4</h4>
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w4-tue" data-task="3.4-w4-tue" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w4-tue">Tuesday - Content highlight</label>
+                </div>
+                <p>"This week on Medcast: Top cardiology episodes 🫀" + episode list + download link</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w4-tue" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+
+            <div class="task-item">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="task-3.4-w4-fri" data-task="3.4-w4-fri" onchange="updateTaskStyle(this); saveProgress()">
+                    <label for="task-3.4-w4-fri">Friday - Case study</label>
+                </div>
+                <p>"How [Sponsor] reached 5,000 cardiologists through Medcast Media" (or general sponsorship results)</p>
+                <div class="comment-box">
+                    <label>Comments:</label>
+                    <textarea data-comment="3.4-w4-fri" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Things to Get from Matt -->
+        <div class="task-section" id="from-matt">
+            <h2 style="background: #e94560;">📦 Things to Get from Matt</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Got It</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gastro specialist database</td>
+                        <td><input type="checkbox" data-task="matt-gastro-db" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-gastro-db" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Rheum specialist database</td>
+                        <td><input type="checkbox" data-task="matt-rheum-db" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-rheum-db" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>All-specialty database (Medcast)</td>
+                        <td><input type="checkbox" data-task="matt-all-db" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-all-db" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Pharma marketing contacts</td>
+                        <td><input type="checkbox" data-task="matt-pharma" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-pharma" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Medflow landing pages (gastro, rheum)</td>
+                        <td><input type="checkbox" data-task="matt-medflow-lp" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-medflow-lp" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Medcast app store links</td>
+                        <td><input type="checkbox" data-task="matt-medcast-app" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-medcast-app" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Medcast landing page</td>
+                        <td><input type="checkbox" data-task="matt-medcast-lp" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-medcast-lp" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Google Ads daily budgets</td>
+                        <td><input type="checkbox" data-task="matt-budgets" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-budgets" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Platform metrics (both products)</td>
+                        <td><input type="checkbox" data-task="matt-metrics" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-metrics" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Sponsor pricing/packages</td>
+                        <td><input type="checkbox" data-task="matt-pricing" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-pricing" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Demo site URLs (sponsors)</td>
+                        <td><input type="checkbox" data-task="matt-demo" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-demo" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>User testimonials</td>
+                        <td><input type="checkbox" data-task="matt-testimonials" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-testimonials" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Medflow LinkedIn access</td>
+                        <td><input type="checkbox" data-task="matt-medflow-li" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-medflow-li" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Medcast LinkedIn access</td>
+                        <td><input type="checkbox" data-task="matt-medcast-li" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-medcast-li" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Brand assets (logos, images)</td>
+                        <td><input type="checkbox" data-task="matt-assets" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-assets" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                    <tr>
+                        <td>Demo videos</td>
+                        <td><input type="checkbox" data-task="matt-videos" onchange="saveProgress()"></td>
+                        <td><textarea data-comment="matt-videos" placeholder="Notes..." style="width:200px;padding:5px;border:1px solid #ddd;border-radius:4px;" onchange="saveProgress()"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="comment-box">
+                <label>Additional Notes:</label>
+                <textarea data-comment="matt-additional" placeholder="Any other notes..." onchange="saveProgress()"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Load saved progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+        });
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const data = {
+                tasks: {},
+                comments: {},
+                savedAt: new Date().toISOString()
+            };
+
+            // Save all checkboxes
+            document.querySelectorAll('input[type="checkbox"][data-task]').forEach(cb => {
+                data.tasks[cb.dataset.task] = cb.checked;
+            });
+
+            // Save all comments
+            document.querySelectorAll('[data-comment]').forEach(el => {
+                data.comments[el.dataset.comment] = el.value;
+            });
+
+            localStorage.setItem('petra-marketing-tasks', JSON.stringify(data));
+            
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            status.textContent = '✓ Saved ' + new Date().toLocaleTimeString();
+            status.classList.add('show');
+            setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('petra-marketing-tasks');
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+
+            // Restore checkboxes
+            if (data.tasks) {
+                Object.entries(data.tasks).forEach(([key, value]) => {
+                    const cb = document.querySelector(`input[data-task="${key}"]`);
+                    if (cb) {
+                        cb.checked = value;
+                        updateTaskStyle(cb);
+                    }
+                });
+            }
+
+            // Restore comments
+            if (data.comments) {
+                Object.entries(data.comments).forEach(([key, value]) => {
+                    const el = document.querySelector(`[data-comment="${key}"]`);
+                    if (el) {
+                        el.value = value;
+                        // Auto-expand textarea if it has content
+                        if (el.tagName === 'TEXTAREA' && value) {
+                            autoExpandTextarea(el);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Update task item styling when checked
+        function updateTaskStyle(checkbox) {
+            const taskItem = checkbox.closest('.task-item');
+            if (taskItem) {
+                if (checkbox.checked) {
+                    taskItem.classList.add('done');
+                } else {
+                    taskItem.classList.remove('done');
+                }
+            }
+        }
+
+        // Export HTML with current state
+        function exportHTML() {
+            // Update all checkbox states in the HTML
+            document.querySelectorAll('input[type="checkbox"][data-task]').forEach(cb => {
+                if (cb.checked) {
+                    cb.setAttribute('checked', 'checked');
+                } else {
+                    cb.removeAttribute('checked');
+                }
+            });
+
+            // Update all text values
+            document.querySelectorAll('[data-comment]').forEach(el => {
+                if (el.tagName === 'TEXTAREA') {
+                    el.textContent = el.value;
+                } else if (el.tagName === 'INPUT') {
+                    el.setAttribute('value', el.value);
+                }
+            });
+
+            // Get the HTML
+            const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+            // Create download
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'petra-tasks-' + new Date().toISOString().split('T')[0] + '.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        // Auto-expand textareas
+        function autoExpandTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 200) + 'px';
+        }
+
+        // Apply auto-expand to all textareas
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('textarea[data-comment]');
+
+            textareas.forEach(textarea => {
+                // Auto-expand on input
+                textarea.addEventListener('input', function() {
+                    autoExpandTextarea(this);
+                });
+
+                // Initial auto-expand for loaded content
+                if (textarea.value) {
+                    autoExpandTextarea(textarea);
+                }
+            });
+        });
+
+        // Fix textareas with inline styles
+        document.addEventListener('DOMContentLoaded', function() {
+            const inlineStyledTextareas = document.querySelectorAll('textarea[style*="width:200px"]');
+            inlineStyledTextareas.forEach(textarea => {
+                textarea.classList.add('notes-field');
+                textarea.removeAttribute('style');
+            });
+        });
+
+        // ===== GANTT CHART FUNCTIONALITY =====
+
+        let ganttData = [];
+        let currentSort = 'priority';
+
+        // Open Gantt Chart Modal
+        function openGanttChart() {
+            parseTasksToGantt();
+            renderGanttChart();
+            document.getElementById('ganttModal').classList.add('active');
+        }
+
+        // Close Gantt Chart Modal
+        function closeGanttChart() {
+            document.getElementById('ganttModal').classList.remove('active');
+        }
+
+        // Parse tasks from the page into Gantt data structure
+        function parseTasksToGantt() {
+            ganttData = [];
+            const saved = localStorage.getItem('petra-marketing-tasks');
+            const savedData = saved ? JSON.parse(saved) : {};
+            const ganttSaved = localStorage.getItem('petra-gantt-data');
+            const ganttSavedData = ganttSaved ? JSON.parse(ganttSaved) : {};
+
+            // Get all task rows from summary table and detail sections
+            const summaryRows = document.querySelectorAll('#summary table tbody tr');
+
+            // Starting date for cascading tasks (January 31, 2026)
+            let cascadeDate = new Date('2026-01-31');
+
+            summaryRows.forEach((row, index) => {
+                const cells = row.cells;
+                if (cells.length >= 5) {
+                    const priorityBadge = cells[0].querySelector('.priority-badge');
+                    const taskName = cells[1].textContent.trim();
+                    const platform = cells[2].textContent.trim();
+                    const checkbox = cells[4].querySelector('input[type="checkbox"]');
+
+                    if (checkbox) {
+                        const taskId = checkbox.dataset.task;
+                        const priority = priorityBadge ? priorityBadge.className.match(/p(\d)/)[1] : '3';
+                        const isCompleted = savedData.tasks && savedData.tasks[taskId] ? savedData.tasks[taskId] : false;
+
+                        // Get saved Gantt data or calculate cascading defaults
+                        const ganttTaskData = ganttSavedData[taskId] || {};
+                        const duration = ganttTaskData.duration || (priority === '1' ? 3 : priority === '2' ? 5 : 7);
+
+                        let startDate;
+                        if (ganttTaskData.startDate) {
+                            // Use saved start date
+                            startDate = ganttTaskData.startDate;
+                        } else {
+                            // Use cascading date for new tasks
+                            startDate = cascadeDate.toISOString().split('T')[0];
+
+                            // Calculate next cascade date (current start + duration)
+                            cascadeDate = new Date(cascadeDate);
+                            cascadeDate.setDate(cascadeDate.getDate() + duration);
+                        }
+
+                        ganttData.push({
+                            id: taskId,
+                            name: taskName,
+                            platform: platform,
+                            priority: parseInt(priority),
+                            startDate: startDate,
+                            duration: duration,
+                            completed: isCompleted
+                        });
+                    }
+                }
+            });
+        }
+
+        // Sort Gantt Chart
+        function sortGanttChart() {
+            currentSort = document.getElementById('ganttSort').value;
+
+            ganttData.sort((a, b) => {
+                switch(currentSort) {
+                    case 'priority':
+                        return a.priority - b.priority;
+                    case 'project':
+                        return a.name.localeCompare(b.name);
+                    case 'platform':
+                        return a.platform.localeCompare(b.platform);
+                    case 'timeline':
+                        return new Date(a.startDate) - new Date(b.startDate);
+                    default:
+                        return 0;
+                }
+            });
+
+            renderGanttChart();
+        }
+
+        // Render Gantt Chart
+        function renderGanttChart() {
+            const container = document.getElementById('ganttContainer');
+
+            if (ganttData.length === 0) {
+                container.innerHTML = '<p style="text-align:center;padding:50px;color:#666;">No tasks available to display</p>';
+                return;
+            }
+
+            // Calculate date range based on all tasks
+            let minDate = new Date('2026-01-31');  // Default start
+            let maxDate = new Date('2026-01-31');
+
+            ganttData.forEach(task => {
+                const taskStart = new Date(task.startDate);
+                const taskEnd = new Date(taskStart);
+                taskEnd.setDate(taskEnd.getDate() + task.duration);
+
+                if (taskStart < minDate) minDate = taskStart;
+                if (taskEnd > maxDate) maxDate = taskEnd;
+            });
+
+            // Add some padding to the date range
+            minDate.setDate(minDate.getDate() - 2);
+            maxDate.setDate(maxDate.getDate() + 5);
+
+            // Generate date array
+            const dates = [];
+            const currentDate = new Date(minDate);
+            while (currentDate <= maxDate) {
+                dates.push(new Date(currentDate));
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+            const totalDays = dates.length;
+
+            // Build timeline header
+            let html = '<div class="gantt-chart">';
+            html += '<div class="gantt-timeline">';
+            dates.forEach(date => {
+                const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+                const dayNum = date.getDate();
+                const monthName = date.toLocaleDateString('en-US', { month: 'short' });
+                html += `<div class="gantt-day">${dayName}<br>${monthName} ${dayNum}</div>`;
+            });
+            html += '</div>';
+
+            // Build task rows
+            ganttData.forEach(task => {
+                const priorityLabel = task.priority === 1 ? 'P1' : task.priority === 2 ? 'P2' : 'P3';
+                const priorityClass = `p${task.priority}`;
+
+                html += '<div class="gantt-row">';
+                html += `<div class="gantt-task-label">
+                    <span class="priority-badge ${priorityClass}">${priorityLabel}</span>
+                    <span class="gantt-task-name">${task.name}</span>
+                </div>`;
+
+                html += '<div class="gantt-timeline-row">';
+                html += '<div class="gantt-bar-container">';
+
+                // Calculate bar position and width
+                const taskStart = new Date(task.startDate);
+                const daysDiff = Math.floor((taskStart - minDate) / (1000 * 60 * 60 * 24));
+                const leftPercent = (daysDiff / totalDays) * 100;
+                const widthPercent = (task.duration / totalDays) * 100;
+
+                const completedClass = task.completed ? ' completed' : '';
+                html += `<div class="gantt-bar priority-${task.priority}${completedClass}"
+                    style="left: ${leftPercent}%; width: ${widthPercent}%"
+                    onclick="editGanttTask('${task.id}', event)">
+                    ${task.duration}d
+                </div>`;
+
+                html += '</div></div></div>';
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Edit Gantt Task
+        function editGanttTask(taskId, event) {
+            event.stopPropagation();
+            const task = ganttData.find(t => t.id === taskId);
+            if (!task) return;
+
+            // Close any existing popups
+            document.querySelectorAll('.gantt-edit-controls').forEach(p => p.remove());
+
+            // Create edit popup
+            const bar = event.target;
+            const rect = bar.getBoundingClientRect();
+
+            const controls = document.createElement('div');
+            controls.className = 'gantt-edit-controls active';
+            controls.onclick = (e) => e.stopPropagation();
+
+            // Get saved notes from localStorage
+            const saved = localStorage.getItem('petra-marketing-tasks');
+            const savedData = saved ? JSON.parse(saved) : {};
+            const notes = savedData.comments && savedData.comments[taskId] ? savedData.comments[taskId] : '';
+
+            controls.innerHTML = `
+                <div class="gantt-edit-field">
+                    <label>Task:</label>
+                    <strong>${task.name}</strong>
+                </div>
+                <div class="gantt-edit-field">
+                    <label>Start Date:</label>
+                    <input type="date" id="edit-start-${taskId}" value="${task.startDate}">
+                </div>
+                <div class="gantt-edit-field">
+                    <label>Duration (days):</label>
+                    <input type="number" id="edit-duration-${taskId}" value="${task.duration}" min="1" max="30">
+                </div>
+                <div class="gantt-edit-field">
+                    <label>Priority:</label>
+                    <select id="edit-priority-${taskId}">
+                        <option value="1" ${task.priority === 1 ? 'selected' : ''}>P1 - High</option>
+                        <option value="2" ${task.priority === 2 ? 'selected' : ''}>P2 - Medium</option>
+                        <option value="3" ${task.priority === 3 ? 'selected' : ''}>P3 - Low</option>
+                    </select>
+                </div>
+                <div class="gantt-edit-field">
+                    <label>Notes:</label>
+                    <textarea id="edit-notes-${taskId}" rows="3" style="width:100%;padding:6px;border:1px solid #ddd;border-radius:4px;font-size:13px;">${notes}</textarea>
+                </div>
+                <div class="gantt-edit-buttons">
+                    <button class="cancel" onclick="closeEditPopup(event)">Cancel</button>
+                    <button class="save" onclick="saveGanttEdit('${taskId}', event)">Save</button>
+                </div>
+            `;
+
+            // Position the popup
+            controls.style.left = Math.min(rect.left, window.innerWidth - 350) + 'px';
+            controls.style.top = (rect.bottom + 5) + 'px';
+
+            document.body.appendChild(controls);
+        }
+
+        // Close edit popup
+        function closeEditPopup(event) {
+            event.stopPropagation();
+            const popup = event.target.closest('.gantt-edit-controls');
+            if (popup) popup.remove();
+        }
+
+        // Save Gantt Edit
+        function saveGanttEdit(taskId, event) {
+            event.stopPropagation();
+
+            const task = ganttData.find(t => t.id === taskId);
+            if (!task) return;
+
+            const newStart = document.getElementById(`edit-start-${taskId}`).value;
+            const newDuration = parseInt(document.getElementById(`edit-duration-${taskId}`).value);
+            const newPriority = parseInt(document.getElementById(`edit-priority-${taskId}`).value);
+            const newNotes = document.getElementById(`edit-notes-${taskId}`)?.value || '';
+
+            // Update task
+            task.startDate = newStart;
+            task.duration = newDuration;
+            task.priority = newPriority;
+
+            // Save notes to the main task data
+            const saved = localStorage.getItem('petra-marketing-tasks');
+            const savedData = saved ? JSON.parse(saved) : { tasks: {}, comments: {} };
+            if (!savedData.comments) savedData.comments = {};
+            savedData.comments[taskId] = newNotes;
+            localStorage.setItem('petra-marketing-tasks', JSON.stringify(savedData));
+
+            // Update notes field in main table if it exists
+            const textarea = document.querySelector(`textarea[data-comment="${taskId}"]`);
+            if (textarea) textarea.value = newNotes;
+
+            // Save to localStorage
+            saveGanttData();
+
+            // Update priority badge in main table if changed
+            updateMainTablePriority(taskId, newPriority);
+
+            // Close popup and re-render
+            closeEditPopup(event);
+            renderGanttChart();
+        }
+
+        // Save Gantt data to localStorage
+        function saveGanttData() {
+            const ganttSaveData = {};
+            ganttData.forEach(task => {
+                ganttSaveData[task.id] = {
+                    startDate: task.startDate,
+                    duration: task.duration,
+                    priority: task.priority
+                };
+            });
+            localStorage.setItem('petra-gantt-data', JSON.stringify(ganttSaveData));
+        }
+
+        // Update priority badge in main table
+        function updateMainTablePriority(taskId, newPriority) {
+            const checkbox = document.querySelector(`input[data-task="${taskId}"]`);
+            if (!checkbox) return;
+
+            const row = checkbox.closest('tr');
+            if (!row) return;
+
+            const badgeCell = row.cells[0];
+            const badge = badgeCell.querySelector('.priority-badge');
+
+            if (badge) {
+                badge.className = `priority-badge p${newPriority}`;
+                badge.textContent = `P${newPriority}`;
+            }
+
+            saveProgress();
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('ganttModal');
+            if (event.target === modal) {
+                closeGanttChart();
+            }
+        });
+
+        // ===== TASK TABLE FUNCTIONALITY =====
+
+        // Subtask data structure
+        const subtaskData = {
+            'summary-1.1': [
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.1.1' },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.1.2' },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.1.3' },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.1.4' }
+            ],
+            'summary-1.2': [
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.2.1' },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.2.2' },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.2.3' },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.2.4' }
+            ],
+            'summary-1.3': [
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.3.1' },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.3.2' },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.3.3' }
+            ],
+            'summary-1.4': [
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.4.1' },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.4.2' },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.4.3' }
+            ],
+            'summary-2.1': [
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-2.1.1' },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-2.1.2' },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-2.1.3' },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-2.1.4' }
+            ],
+            'summary-2.2': [
+                { name: 'Specialty Email 1', type: 'Email', taskId: 'subtask-2.2.1' },
+                { name: 'Specialty Email 2', type: 'Email', taskId: 'subtask-2.2.2' },
+                { name: 'Specialty Email 3', type: 'Email', taskId: 'subtask-2.2.3' },
+                { name: 'Specialty Email 4', type: 'Email', taskId: 'subtask-2.2.4' },
+                { name: 'Specialty Email 5', type: 'Email', taskId: 'subtask-2.2.5' },
+                { name: 'Specialty Email 6', type: 'Email', taskId: 'subtask-2.2.6' },
+                { name: 'Specialty Email 7', type: 'Email', taskId: 'subtask-2.2.7' }
+            ],
+            'summary-2.3': [
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-2.3.1' },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-2.3.2' },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-2.3.3' }
+            ],
+            'summary-3.1': [
+                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.1.1' },
+                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.1.2' },
+                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.1.3' },
+                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.1.4' }
+            ],
+            'summary-3.2': [
+                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.2.1' },
+                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.2.2' },
+                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.2.3' },
+                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.2.4' }
+            ],
+            'summary-3.3': [
+                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.3.1' },
+                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.3.2' },
+                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.3.3' },
+                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.3.4' },
+                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.3.5' },
+                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.3.6' },
+                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.3.7' },
+                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.3.8' }
+            ],
+            'summary-3.4': [
+                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.4.1' },
+                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.4.2' },
+                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.4.3' },
+                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.4.4' },
+                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.4.5' },
+                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.4.6' },
+                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.4.7' },
+                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.4.8' }
+            ]
+        };
+
+        // Toggle subtasks visibility
+        function toggleSubtasks(taskId, event) {
+            // Prevent toggling when clicking on interactive elements
+            if (event && (
+                event.target.tagName === 'SELECT' ||
+                event.target.tagName === 'BUTTON' ||
+                event.target.tagName === 'INPUT' ||
+                event.target.tagName === 'TEXTAREA'
+            )) {
+                return;
+            }
+
+            const expandIcon = document.getElementById('expand-icon-' + taskId);
+            const taskRow = document.querySelector(`tr[data-task-id="${taskId}"]`);
+
+            if (!taskRow) return;
+
+            // Check if subtasks already exist
+            let existingSubtasks = [];
+            let nextRow = taskRow.nextElementSibling;
+            while (nextRow && nextRow.classList.contains('subtask-row') && nextRow.dataset.parentTask === taskId) {
+                existingSubtasks.push(nextRow);
+                nextRow = nextRow.nextElementSibling;
+            }
+
+            if (existingSubtasks.length > 0) {
+                // Toggle visibility
+                const isVisible = existingSubtasks[0].classList.contains('visible');
+                existingSubtasks.forEach(row => {
+                    if (isVisible) {
+                        row.classList.remove('visible');
+                    } else {
+                        row.classList.add('visible');
+                    }
+                });
+
+                // Toggle expand icon
+                if (expandIcon) {
+                    if (isVisible) {
+                        expandIcon.classList.remove('expanded');
+                    } else {
+                        expandIcon.classList.add('expanded');
+                    }
+                }
+            } else {
+                // Create subtasks
+                const subtasks = subtaskData[taskId] || [];
+                if (subtasks.length === 0) return;
+
+                subtasks.forEach((subtask, index) => {
+                    const subtaskRow = document.createElement('tr');
+                    subtaskRow.className = 'subtask-row visible';
+                    subtaskRow.dataset.parentTask = taskId;
+                    subtaskRow.dataset.taskId = subtask.taskId;
+
+                    subtaskRow.innerHTML = `
+                        <td></td>
+                        <td><span class="task-name">↳ ${subtask.name}</span></td>
+                        <td>${subtask.type}</td>
+                        <td>-</td>
+                        <td></td>
+                        <td><input type="checkbox" data-task="${subtask.taskId}" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
+                        <td><textarea data-comment="${subtask.taskId}" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
+                    `;
+
+                    taskRow.parentNode.insertBefore(subtaskRow, taskRow.nextSibling);
+                });
+
+                // Expand icon
+                if (expandIcon) {
+                    expandIcon.classList.add('expanded');
+                }
+
+                // Load saved progress for subtasks
+                loadProgress();
+            }
+        }
+
+        // Update priority
+        function updatePriority(selectElement, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            const taskId = selectElement.dataset.priorityFor;
+            const newPriority = selectElement.value;
+
+            // Save to localStorage
+            const saved = localStorage.getItem('petra-task-priorities');
+            const priorities = saved ? JSON.parse(saved) : {};
+            priorities[taskId] = newPriority;
+            localStorage.setItem('petra-task-priorities', JSON.stringify(priorities));
+
+            // Visual feedback
+            selectElement.style.borderColor = '#27ae60';
+            setTimeout(() => {
+                selectElement.style.borderColor = '';
+            }, 300);
+
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            status.textContent = '✓ Priority updated';
+            status.classList.add('show');
+            setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        // Go to task detail
+        function goToTask(taskId, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            const taskElement = document.getElementById(taskId);
+            if (taskElement) {
+                taskElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Highlight the task briefly
+                taskElement.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.5)';
+                setTimeout(() => {
+                    taskElement.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Load saved priorities on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('petra-task-priorities');
+            if (saved) {
+                const priorities = JSON.parse(saved);
+                Object.entries(priorities).forEach(([taskId, priority]) => {
+                    const select = document.querySelector(`select[data-priority-for="${taskId}"]`);
+                    if (select) {
+                        select.value = priority;
+                    }
+                    // Also update detail view priority
+                    const detailSelect = document.querySelector(`select[data-detail-priority-for="${taskId}"]`);
+                    if (detailSelect) {
+                        detailSelect.value = priority;
+                    }
+                });
+            }
+
+            // Load saved dates
+            loadDateProgress();
+        });
+
+        // Update priority from detail view
+        function updateDetailPriority(selectElement) {
+            const taskId = selectElement.dataset.detailPriorityFor;
+            const newPriority = selectElement.value;
+
+            // Save to localStorage
+            const saved = localStorage.getItem('petra-task-priorities');
+            const priorities = saved ? JSON.parse(saved) : {};
+            priorities[taskId] = newPriority;
+            localStorage.setItem('petra-task-priorities', JSON.stringify(priorities));
+
+            // Update the main table priority select
+            const tableSelect = document.querySelector(`select[data-priority-for="${taskId}"]`);
+            if (tableSelect) {
+                tableSelect.value = newPriority;
+            }
+
+            // Visual feedback
+            selectElement.style.borderColor = '#27ae60';
+            setTimeout(() => {
+                selectElement.style.borderColor = '';
+            }, 300);
+
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            status.textContent = '✓ Priority updated';
+            status.classList.add('show');
+            setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        // Save date progress
+        function saveDateProgress() {
+            const data = {
+                startDates: {},
+                endDates: {},
+                savedAt: new Date().toISOString()
+            };
+
+            // Save all start dates
+            document.querySelectorAll('[data-start-date], [data-detail-start-date]').forEach(input => {
+                const taskId = input.dataset.startDate || input.dataset.detailStartDate;
+                if (taskId && input.value) {
+                    data.startDates[taskId] = input.value;
+                }
+            });
+
+            // Save all end dates
+            document.querySelectorAll('[data-end-date], [data-detail-end-date]').forEach(input => {
+                const taskId = input.dataset.endDate || input.dataset.detailEndDate;
+                if (taskId && input.value) {
+                    data.endDates[taskId] = input.value;
+                }
+            });
+
+            localStorage.setItem('petra-task-dates', JSON.stringify(data));
+
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            status.textContent = '✓ Dates saved';
+            status.classList.add('show');
+            setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        // Load date progress
+        function loadDateProgress() {
+            const saved = localStorage.getItem('petra-task-dates');
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+
+            // Restore start dates
+            if (data.startDates) {
+                Object.entries(data.startDates).forEach(([taskId, value]) => {
+                    // Update both table and detail view
+                    const inputs = document.querySelectorAll(`[data-start-date="${taskId}"], [data-detail-start-date="${taskId}"]`);
+                    inputs.forEach(input => {
+                        if (input) input.value = value;
+                    });
+                });
+            }
+
+            // Restore end dates
+            if (data.endDates) {
+                Object.entries(data.endDates).forEach(([taskId, value]) => {
+                    // Update both table and detail view
+                    const inputs = document.querySelectorAll(`[data-end-date="${taskId}"], [data-detail-end-date="${taskId}"]`);
+                    inputs.forEach(input => {
+                        if (input) input.value = value;
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+</html>

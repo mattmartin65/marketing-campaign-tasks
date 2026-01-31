@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Campaign Best Practices & Reference</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #16213e;
+            margin-top: 40px;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin-top: 30px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        h4 {
+            color: #0f3460;
+            margin-top: 20px;
+        }
+        
+        .header-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            background: #1a1a2e;
+            font-size: 18px;
+            padding: 8px 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .toc li {
+            margin: 0;
+        }
+        
+        .toc a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .toc a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Content sections */
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #1a1a2e;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        /* Info boxes */
+        .info-box {
+            background: #e8f4fd;
+            border-left: 4px solid #1a73e8;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Code blocks */
+        pre, code {
+            background: #1a1a2e;
+            color: #a8dadc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+        }
+        
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+        
+        /* Lists */
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .badge-email { background: #667eea; }
+        .badge-ads { background: #1a73e8; }
+        .badge-linkedin { background: #0077b5; }
+        .badge-good { background: #28a745; }
+        .badge-warn { background: #ffc107; color: #333; }
+        .badge-bad { background: #dc3545; }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Example posts */
+        .example-post {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        
+        .example-post.good {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+        
+        .example-post.bad {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+        
+        /* Print styles */
+        @media print {
+            .back-to-top, .toc {
+                display: none !important;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .save-bar {
+                display: none;
+            }
+        }
+
+        /* Save Bar */
+        .save-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .save-bar h3 {
+            color: white;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .save-bar .buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .save-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .save-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .save-btn.secondary {
+            background: white;
+            color: #1a1a2e;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Save Bar -->
+    <div class="save-bar">
+        <h3>📚 Marketing Best Practices - Petra</h3>
+        <div class="buttons">
+            <a href="index.html" class="save-btn secondary" style="text-decoration: none;">📋 Tasks List</a>
+            <button class="save-btn primary" onclick="saveLocally()">💾 Save Locally</button>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h2>📑 Quick Navigation</h2>
+        <ul>
+            <li><a href="#email">📧 Email</a></li>
+            <li><a href="#google-ads">🔍 Google Ads</a></li>
+            <li><a href="#linkedin">💼 LinkedIn</a></li>
+            <li><a href="#tracking">📊 Tracking</a></li>
+            <li><a href="#checklists">✅ Checklists</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <div class="header-info">
+        <h1>📚 Marketing Campaign Best Practices</h1>
+        <p><strong>Reference Guide for:</strong> Petra</p>
+        <p><strong>Products:</strong> Medflow, Medcast Media</p>
+        <p><strong>Platforms:</strong> Brevo, Google Ads, LinkedIn</p>
+        <p><strong>Date:</strong> 31 January 2026</p>
+    </div>
+
+    <!-- EMAIL SECTION -->
+    <div class="section" id="email">
+        <h2>📧 Email Campaign Best Practices</h2>
+        
+        <h3>Timing & Cadence</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign Type</th>
+                    <th>Email Spacing</th>
+                    <th>Total Duration</th>
+                    <th>Best Send Days</th>
+                    <th>Best Send Times</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Welcome/Onboarding</td>
+                    <td>2-3 days apart</td>
+                    <td>1-2 weeks</td>
+                    <td>Tue, Wed, Thu</td>
+                    <td>10am or 2pm</td>
+                </tr>
+                <tr>
+                    <td>Nurture Series</td>
+                    <td>4-7 days apart</td>
+                    <td>3-4 weeks</td>
+                    <td>Tue, Wed, Thu</td>
+                    <td>10am local time</td>
+                </tr>
+                <tr>
+                    <td>Re-engagement</td>
+                    <td>5-7 days apart</td>
+                    <td>2-3 weeks</td>
+                    <td>Tuesday</td>
+                    <td>10am</td>
+                </tr>
+                <tr>
+                    <td>Industry/B2B</td>
+                    <td>7-10 days apart</td>
+                    <td>4-6 weeks</td>
+                    <td>Tue, Wed</td>
+                    <td>9-11am</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>For medical professionals specifically:</strong>
+            <ul>
+                <li>Avoid Mondays (clinic catch-up) and Fridays (winding down)</li>
+                <li>Mid-morning (10-11am) works well — after morning rounds, before lunch</li>
+                <li>Consider time zones across Australia</li>
+            </ul>
+        </div>
+
+        <h3>Subject Line Best Practices</h3>
+        <ul>
+            <li>Keep under <strong>50 characters</strong> (mobile preview)</li>
+            <li>Use numbers when relevant ("Save 30 min/day")</li>
+            <li>Create urgency without being spammy</li>
+            <li>Personalize with name or specialty when possible</li>
+            <li>A/B test subject lines (Brevo supports this)</li>
+        </ul>
+
+        <h4>Examples:</h4>
+        <div class="example-post good">✅ "Dr {{first_name}}, streamline your PBS forms"
+✅ "New gastro content this week"
+✅ "3 ways to save time on PBS authorities"</div>
+        <div class="example-post bad">❌ "URGENT: Don't miss this opportunity!!!"
+❌ "You won't BELIEVE this offer"
+❌ "Act now before it's too late"</div>
+
+        <h3>Email Structure</h3>
+        <ol>
+            <li><strong>Clear single CTA</strong> — one main action per email</li>
+            <li><strong>Scannable format</strong> — short paragraphs, bullet points</li>
+            <li><strong>Mobile-first</strong> — 60%+ open on mobile</li>
+            <li><strong>Preheader text</strong> — use the preview text strategically</li>
+            <li><strong>Unsubscribe visible</strong> — legal requirement, builds trust</li>
+        </ol>
+
+        <h3>A/B Testing Strategy</h3>
+        <p>Test one element at a time:</p>
+        <ol>
+            <li><strong>Week 1-2:</strong> Subject lines (send to 20% of list, winner to 80%)</li>
+            <li><strong>Week 3-4:</strong> Send times (morning vs afternoon)</li>
+            <li><strong>Week 5-6:</strong> CTA button text/color</li>
+            <li><strong>Ongoing:</strong> Content length, personalization</li>
+        </ol>
+
+        <h3>Automation Rules (Brevo)</h3>
+        <div class="info-box">
+            <strong>Recommended automations:</strong>
+            <ul>
+                <li>If opened but didn't click → Send follow-up after 24h</li>
+                <li>If clicked but didn't convert → Alert sales team or send different offer</li>
+                <li>If converted → Exit campaign, enter onboarding sequence</li>
+                <li>If no opens after 2 emails → Move to re-engagement list</li>
+                <li>After 90 days inactive → Remove from active lists</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- GOOGLE ADS SECTION -->
+    <div class="section" id="google-ads">
+        <h2>🔍 Google Ads Best Practices</h2>
+
+        <h3>Campaign Structure</h3>
+        <pre>Account
+├── Campaign: Medflow - Gastro
+│   ├── Ad Group: PBS Forms
+│   ├── Ad Group: Practice Software
+│   └── Ad Group: Competitor Terms
+├── Campaign: Medflow - Rheum
+│   └── ...
+├── Campaign: Medcast - General
+│   └── ...
+└── Campaign: Medcast - [Specialty]
+    └── ...</pre>
+
+        <h3>Budget & Bidding</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign Type</th>
+                    <th>Recommended Daily Budget</th>
+                    <th>Bidding Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>New campaign (testing)</td>
+                    <td>$20-50/day</td>
+                    <td>Maximize Clicks</td>
+                </tr>
+                <tr>
+                    <td>Established campaign</td>
+                    <td>$50-100/day</td>
+                    <td>Target CPA</td>
+                </tr>
+                <tr>
+                    <td>High-intent keywords</td>
+                    <td>$100+/day</td>
+                    <td>Manual CPC</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>Medical/B2B typically:</strong>
+            <ul>
+                <li>Higher CPC ($5-20 per click) but higher conversion value</li>
+                <li>Start with Maximize Clicks for 2 weeks to gather data</li>
+                <li>Switch to Target CPA once you have 15+ conversions</li>
+            </ul>
+        </div>
+
+        <h3>Keyword Match Types</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Match Type</th>
+                    <th>Use For</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>[exact]</code></td>
+                    <td>High-intent, proven converters</td>
+                    <td><code>[pbs authority form]</code></td>
+                </tr>
+                <tr>
+                    <td><code>"phrase"</code></td>
+                    <td>Moderate intent</td>
+                    <td><code>"gastro pbs forms"</code></td>
+                </tr>
+                <tr>
+                    <td><code>broad</code></td>
+                    <td>Discovery (with caution)</td>
+                    <td><code>medical practice software</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Negative Keywords (Add Immediately)</h3>
+        <div class="warning-box">
+            <strong>Always exclude:</strong> free, jobs, salary, training, course, student, sample, template, download, pdf (unless relevant to your offer)
+        </div>
+
+        <h3>Ad Copy Best Practices</h3>
+        <ul>
+            <li><strong>Headline 1:</strong> Include main keyword</li>
+            <li><strong>Headline 2:</strong> Benefit or differentiator</li>
+            <li><strong>Headline 3:</strong> CTA or trust signal</li>
+            <li><strong>Descriptions:</strong> Expand on benefits, include CTA</li>
+        </ul>
+
+        <h4>Required Ad Extensions:</h4>
+        <ul class="checklist">
+            <li>Sitelinks (4-6 links to key pages)</li>
+            <li>Callouts (free trial, Australian-made, etc.)</li>
+            <li>Structured snippets (specialties covered)</li>
+            <li>Call extension (if phone support available)</li>
+        </ul>
+
+        <h3>Landing Page Requirements</h3>
+        <ul class="checklist">
+            <li>Message match (headline matches ad)</li>
+            <li>Single clear CTA</li>
+            <li>Mobile optimized</li>
+            <li>Fast load time (&lt;3 seconds)</li>
+            <li>Trust signals (logos, testimonials, security badges)</li>
+            <li>Form above the fold (or clear path to it)</li>
+        </ul>
+    </div>
+
+    <!-- LINKEDIN SECTION -->
+    <div class="section" id="linkedin">
+        <h2>💼 LinkedIn Best Practices</h2>
+
+        <h3>Posting Schedule</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Content Type</th>
+                    <th>Frequency</th>
+                    <th>Best Days</th>
+                    <th>Best Times</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Organic posts</td>
+                    <td>3-5x per week</td>
+                    <td>Tue, Wed, Thu</td>
+                    <td>8-10am, 12pm</td>
+                </tr>
+                <tr>
+                    <td>Long-form articles</td>
+                    <td>1-2x per month</td>
+                    <td>Tuesday</td>
+                    <td>8am</td>
+                </tr>
+                <tr>
+                    <td>Video content</td>
+                    <td>1-2x per week</td>
+                    <td>Wed, Thu</td>
+                    <td>9am</td>
+                </tr>
+                <tr>
+                    <td>Polls/engagement</td>
+                    <td>1x per week</td>
+                    <td>Thursday</td>
+                    <td>12pm</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>For B2B/Healthcare:</strong>
+            <ul>
+                <li>Tuesday-Thursday consistently outperform</li>
+                <li>Early morning (8-9am) catches the commute scroll</li>
+                <li>Lunch time (12-1pm) is second best</li>
+            </ul>
+        </div>
+
+        <h3>Content Mix (80/20 Rule)</h3>
+        <ul>
+            <li><strong>80% Value:</strong> Educational, insights, industry news, tips</li>
+            <li><strong>20% Promotional:</strong> Product features, CTAs, demos</li>
+        </ul>
+
+        <h3>Post Types That Work</h3>
+        <ol>
+            <li><strong>Carousel posts</strong> — highest engagement, good for explaining features</li>
+            <li><strong>Native video</strong> — 5x more reach than links</li>
+            <li><strong>Polls</strong> — high engagement, good for market research</li>
+            <li><strong>Text-only with hook</strong> — personal stories, industry takes</li>
+            <li><strong>Document/PDF shares</strong> — guides, checklists</li>
+        </ol>
+
+        <h3>Post Structure Template</h3>
+        <pre>[Hook - first 2 lines visible before "see more"]
+
+[Value - the meat of the post]
+
+[CTA - what should they do?]
+
+[Hashtags - 3-5 relevant ones]</pre>
+
+        <h4>Example Post:</h4>
+        <div class="example-post good">PBS paperwork is stealing 30+ minutes from Australian specialists every day.
+
+We talked to 50 gastroenterologists about their biggest admin frustrations.
+Here's what we found:
+
+→ 73% still use paper forms
+→ Average 4 forms per day
+→ 12 minutes per form (conservative)
+
+That's 48 minutes of paperwork. Every. Single. Day.
+
+We built Medflow to fix this.
+
+What's your biggest admin time-sink? 👇
+
+#MedicalPractice #HealthTech #PBS #Gastroenterology</div>
+
+        <h3>Hashtag Strategy</h3>
+        <ul>
+            <li>Use <strong>3-5 hashtags</strong> per post</li>
+            <li>Mix of broad (#HealthTech 1M+) and niche (#AustralianMedicine 10K)</li>
+            <li>Create/use branded hashtag (#MedflowPBS, #MedcastMedia)</li>
+        </ul>
+
+        <h4>Relevant Hashtags:</h4>
+        <p>
+            <code>#HealthTech</code> <code>#MedTech</code> <code>#DigitalHealth</code>
+            <code>#MedicalEducation</code> <code>#CPD</code> <code>#MedEd</code>
+            <code>#Gastroenterology</code> <code>#Rheumatology</code>
+            <code>#AustralianHealthcare</code> <code>#AusHealth</code>
+            <code>#PharmaMarketing</code> <code>#HealthcareMarketing</code>
+        </p>
+
+        <h3>LinkedIn Ads (Optional)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Objective</th>
+                    <th>Use For</th>
+                    <th>Typical CPC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Awareness</td>
+                    <td>Brand building</td>
+                    <td>$2-5</td>
+                </tr>
+                <tr>
+                    <td>Website Visits</td>
+                    <td>Traffic to landing page</td>
+                    <td>$5-10</td>
+                </tr>
+                <tr>
+                    <td>Lead Gen Forms</td>
+                    <td>Capture leads in-platform</td>
+                    <td>$30-80 per lead</td>
+                </tr>
+                <tr>
+                    <td>Sponsored Content</td>
+                    <td>Amplify best organic posts</td>
+                    <td>$8-15</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Targeting for Specialists:</h4>
+        <ul>
+            <li>Job titles: Gastroenterologist, Rheumatologist, etc.</li>
+            <li>Industry: Hospital & Health Care</li>
+            <li>Company size: 1-50 (private practice) or 1000+ (hospitals)</li>
+            <li>Location: Australia</li>
+        </ul>
+
+        <h4>Targeting for Pharma/Industry:</h4>
+        <ul>
+            <li>Job titles: Brand Manager, Product Manager, Marketing Manager</li>
+            <li>Industry: Pharmaceuticals</li>
+            <li>Seniority: Manager, Director, VP</li>
+        </ul>
+    </div>
+
+    <!-- TRACKING SECTION -->
+    <div class="section" id="tracking">
+        <h2>📊 Tracking & Analytics Setup</h2>
+
+        <h3>UTM Parameters</h3>
+        <p>Add to ALL links:</p>
+        <pre>?utm_source=[platform]&utm_medium=[type]&utm_campaign=[campaign_name]
+
+Examples:
+- Email: ?utm_source=brevo&utm_medium=email&utm_campaign=medflow_gastro_launch
+- Google Ads: Auto-tagged OR ?utm_source=google&utm_medium=cpc&utm_campaign=medflow_gastro
+- LinkedIn: ?utm_source=linkedin&utm_medium=organic&utm_campaign=medflow_awareness</pre>
+
+        <h3>Conversion Tracking Setup</h3>
+        <ul class="checklist">
+            <li>Brevo: Set up goals for registration, demo booking</li>
+            <li>Google Ads: Install conversion pixel on thank-you pages</li>
+            <li>Google Analytics 4: Link to Google Ads, import conversions</li>
+            <li>LinkedIn: Install Insight Tag, set up conversion tracking</li>
+            <li>Create retargeting audiences from website visitors</li>
+        </ul>
+
+        <h3>Weekly Reporting Template</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Metric</th>
+                    <th>This Week</th>
+                    <th>Last Week</th>
+                    <th>Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3"><span class="badge badge-email">Email</span></td>
+                    <td>Open Rate</td>
+                    <td>___%</td>
+                    <td>___%</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>Click Rate</td>
+                    <td>___%</td>
+                    <td>___%</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>Conversions</td>
+                    <td>___</td>
+                    <td>___</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><span class="badge badge-ads">Google Ads</span></td>
+                    <td>Clicks</td>
+                    <td>___</td>
+                    <td>___</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>CTR</td>
+                    <td>___%</td>
+                    <td>___%</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>Cost/Conv</td>
+                    <td>$___</td>
+                    <td>$___</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><span class="badge badge-linkedin">LinkedIn</span></td>
+                    <td>Impressions</td>
+                    <td>___</td>
+                    <td>___</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>Engagement</td>
+                    <td>___%</td>
+                    <td>___%</td>
+                    <td>___</td>
+                </tr>
+                <tr>
+                    <td>Followers</td>
+                    <td>___</td>
+                    <td>___</td>
+                    <td>___</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHECKLISTS SECTION -->
+    <div class="section" id="checklists">
+        <h2>✅ Quick Checklists</h2>
+
+        <h3>Before Sending an Email</h3>
+        <ul class="checklist">
+            <li>Subject line under 50 characters</li>
+            <li>Preheader text set</li>
+            <li>Single clear CTA</li>
+            <li>Links have UTM parameters</li>
+            <li>Mobile preview checked</li>
+            <li>Unsubscribe link visible</li>
+            <li>Test email sent to self</li>
+            <li>A/B test configured (if applicable)</li>
+        </ul>
+
+        <h3>Before Launching Google Ads</h3>
+        <ul class="checklist">
+            <li>Conversion tracking installed</li>
+            <li>Negative keywords added</li>
+            <li>Ad extensions set up</li>
+            <li>Landing page loads fast (&lt;3s)</li>
+            <li>Landing page message matches ad</li>
+            <li>Daily budget set</li>
+            <li>Geographic targeting correct</li>
+            <li>All 15 headlines filled</li>
+        </ul>
+
+        <h3>Before Posting on LinkedIn</h3>
+        <ul class="checklist">
+            <li>Hook in first 2 lines</li>
+            <li>Value provided (not just promotional)</li>
+            <li>CTA included</li>
+            <li>3-5 relevant hashtags</li>
+            <li>Links have UTM parameters</li>
+            <li>Image/video is high quality</li>
+            <li>Posting at optimal time</li>
+        </ul>
+
+        <h3>Monthly Review</h3>
+        <ul class="checklist">
+            <li>Review email metrics, adjust subject lines</li>
+            <li>Review Google Ads search terms, add negatives</li>
+            <li>Review LinkedIn top posts, replicate success</li>
+            <li>Clean email list (remove bounces, inactive)</li>
+            <li>Update ad copy if CTR dropping</li>
+            <li>Check landing page conversion rate</li>
+            <li>Plan next month's content calendar</li>
+        </ul>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Save locally function
+        function saveLocally() {
+            // Get the HTML
+            const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+            // Create a blob
+            const blob = new Blob([html], { type: 'text/html' });
+
+            // Create download link
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'marketing-best-practices-' + new Date().toISOString().split('T')[0] + '.html';
+
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+
+            // Cleanup
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
