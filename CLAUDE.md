@@ -7,57 +7,152 @@
 
 ---
 
-## Current Status (Session 1)
+## Current Status (Session 3)
 
-**Token Usage:** 119k / 200k (60%)
+**Token Usage:** ~128k / 200k (64%)
 **Last Updated:** 2026-01-31
-**Git Commit:** `03ca110` - Phase 1 complete and pushed to GitHub
+**Git Commit:** Ready to commit - Component-based subtasks & UI refinements
 
-### ✅ Phase 1 COMPLETE - Date Restructuring
+### ✅ Session 3 COMPLETE - Component-Based Subtasks & UI Refinements
 
-**All changes committed and pushed to GitHub**
+**Session 3 Major Changes:**
+1. **JavaScript Component System** - Created reusable component for subtask meta sections
+2. **Complete Field Set for Group Tasks** - All 11 group tasks now have priority, start date, end date, done checkbox, and notes
+3. **Complete Field Set for Subtasks** - All 50+ subtasks automatically get priority, start/end dates, done checkbox via JavaScript component
+4. **UI Alignment Fixes** - Proper vertical alignment and consistent heights across all form elements
 
-1. **Removed date fields from main task detail sections** ✅
-   - Replaced start/end date inputs with calculated "Duration" display
-   - Updated all 11 task-meta sections (tasks 1.1-3.4)
-   - Added `date-range-display` spans with IDs
-   - **Location:** Lines 1125-2250 in index.html
+### ✅ Session 2 COMPLETE - Architecture Clarification & UI Improvements
 
-2. **Updated subtaskData structure** ✅
-   - Added `startDate` and `endDate` fields to all 50+ subtasks
-   - Fields initialized as `null` (to be filled by users)
-   - **Location:** Lines 3014-3089 in index.html
+**CRITICAL ARCHITECTURE CHANGE:**
+- Group tasks and subtasks are now INDEPENDENT entities
+- NO data flows upward from subtasks to group tasks
+- Each subtask has its own: priority, done status, start date, end date, notes
+- Group tasks serve as containers/organizers only
+- All date calculation/aggregation logic removed
 
-3. **Added date inputs to subtask rows** ✅
-   - Modified `toggleSubtasks()` function to render date inputs
-   - Each subtask now has start/end date inputs
-   - Inputs trigger `saveSubtaskDates()` and `calculateAllDateRanges()` on change
-   - **Location:** Lines 3146-3154 in index.html
+### ✅ Session 3 Changes
 
-4. **Created date calculation JavaScript functions** ✅
-   - `saveSubtaskDates()` - Saves subtask dates to localStorage
-   - `loadSubtaskDates()` - Restores subtask dates from localStorage
-   - `calculateTaskDateRange(taskId)` - Calculates min/max dates from subtasks
-   - `calculateAllDateRanges()` - Updates all main task duration displays
-   - Auto-loads and calculates on page load
-   - **Location:** Lines 3250+ in index.html
+**Session 3 Implementation Details:**
 
-5. **Added CSS styling** ✅
-   - `.subtask-dates` - Flex container for date inputs
-   - `.subtask-date-input` - Styled date input fields
-   - `.date-range-display` - Styled duration display
-   - `.date-range-display.scheduled` - Highlighted when dates are set
-   - **Location:** Lines 300-380 in index.html
+1. **JavaScript Component Function** ✅
+   - Created `createSubtaskMeta(subtaskId, checkboxId)` function (lines ~3534-3556)
+   - Returns HTML template for subtask meta section
+   - Single source of truth for all subtask structures
 
-6. **Created CLAUDE.md progress file** ✅
-   - Comprehensive documentation
-   - Commands for next session
-   - Testing checklist
-   - Technical decisions
+2. **Automatic Subtask Initialization** ✅
+   - Created `initializeSubtasks()` function (lines ~3558-3580)
+   - Runs on DOMContentLoaded
+   - Finds all `.task-item` elements without `.subtask-meta`
+   - Generates and injects meta section for each subtask
+   - Removes old checkbox wrappers
+   - **Result:** All 50+ subtasks automatically updated with one function!
 
-### 🎯 Ready for Phase 2
+3. **Group Task Editable Fields** ✅
+   - Updated all 11 group task detail sections with complete field set:
+     - Priority dropdown (P1/P2/P3)
+     - Start Date input
+     - End Date input
+     - Done checkbox
+     - Notes textarea (full-width)
+   - Arranged in clean horizontal layout with proper vertical alignment
 
-**Next Action:** Test locally, then set up Vercel
+4. **UI Alignment Improvements** ✅
+   - Fixed `.task-meta-row` to use `align-items: flex-end` for proper vertical alignment
+   - Fixed `.subtask-meta` to use `align-items: flex-end` and increased gap to 25px
+   - Changed `.subtask-meta-item` to `flex-direction: column` for label-above-input layout
+   - Added `height: 42px` to `.priority-select-detail` and `.date-input` for consistent heights
+   - All form elements now align vertically with proper spacing
+
+5. **Subtask Table Row Alignment** ✅
+   - Removed `padding-left: 40px` from `.subtask-row td`
+   - Added `padding-left: 15px` only to first column
+   - Subtasks now align vertically with group tasks
+
+6. **Enhanced Priority Pills** ✅
+   - Increased height to 40px
+   - Increased border-radius to 25px (more pill-shaped)
+   - Increased padding to 10px 16px
+   - Font size increased to 13px
+
+### ⚠️ Phase 1 - SUPERSEDED by Session 2 Architecture Changes
+
+**Previous Phase 1 approach (DEPRECATED):**
+- Attempted to aggregate subtask dates to group tasks
+- This approach has been abandoned
+
+### ✅ Session 2 Changes
+
+**Session 2 Changes:**
+
+1. **Remove date inheritance/aggregation logic** ✅
+   - Removed `calculateTaskDateRange()` function (lines 3340-3372)
+   - Removed `calculateAllDateRanges()` function (lines 3375-3399)
+   - Removed all 11 date-range-display elements from group tasks
+   - Removed call to `calculateAllDateRanges()` in DOMContentLoaded
+   - Subtask dates remain independent (no aggregation)
+
+2. **Priority styling - Pill-shaped dropdown** ✅
+   - Updated `.priority-select` CSS to pill-shaped design (border-radius: 20px)
+   - Added dynamic colored background based on priority value:
+     - P1 = #e94560 (red)
+     - P2 = #f39c12 (orange)
+     - P3 = #27ae60 (green)
+   - Added `updatePriorityColor()` function to update backgrounds
+   - Applied to both group tasks and subtasks
+
+3. **Table width increase** ✅
+   - Increased max-width from 1000px to 1400px (line 16)
+   - Better use of screen real estate
+
+4. **Subtask table row changes** ✅
+   - Removed date input fields from subtask rows in table
+   - Added "Go to Task" button for each subtask (lines 3174-3176)
+   - Button navigates to task detail section
+   - Dates managed in detail sections only
+
+5. **Remove vertical purple lines** ✅
+   - Removed `border-left: 3px solid #667eea` from `.subtask-row td` (line 341)
+   - Cleaner table appearance without visual clutter
+
+6. **Add priority column for subtasks** ✅
+   - Each subtask gets own priority dropdown in table (lines 3165-3171)
+   - Column width matches group task priority column
+   - Independent priority management per subtask
+   - Priorities saved to localStorage with subtask ID
+   - Colors update automatically on load and change
+
+### 🎯 Ready for Testing & Git Commit
+
+**Next Actions:**
+1. Open [index.html](index.html) in browser and test Session 2 changes
+2. Commit all changes to GitHub with descriptive message
+3. Continue with Phase 2 (Vercel setup)
+
+### 📝 Session 2 Testing Checklist
+
+**Priority Pills:**
+- [ ] All group task priorities show colored pill backgrounds (P1=red, P2=orange, P3=green)
+- [ ] Click on task to expand subtasks
+- [ ] Subtask priorities also show colored pill backgrounds
+- [ ] Change a priority - background color updates immediately
+- [ ] Refresh page - priority colors persist correctly
+
+**Table Layout:**
+- [ ] Table is wider (1400px vs previous 1000px)
+- [ ] No vertical purple lines on subtask rows
+- [ ] Subtask rows align properly with group task rows
+
+**Subtask Rows:**
+- [ ] Subtasks have priority dropdown in first column
+- [ ] Subtasks have "Go to Task" button (not date inputs)
+- [ ] Click "Go to Task" - smoothly scrolls to detail section
+- [ ] Detail section highlights briefly
+
+**Architecture Verification:**
+- [ ] Group task detail sections have NO "Duration:" field
+- [ ] Changing subtask done status doesn't affect group task
+- [ ] Changing subtask priority is independent of group task
+- [ ] Each subtask maintains its own state
 
 ### 📋 Remaining Tasks
 

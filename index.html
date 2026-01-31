@@ -12,7 +12,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
             background: #f5f5f5;
@@ -178,8 +178,8 @@
         }
         
         .checkbox-wrapper input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             cursor: pointer;
         }
         
@@ -243,27 +243,47 @@
             min-height: 50px;
         }
 
-        /* Priority select dropdown */
+        /* Priority select dropdown - Pill-shaped with colored backgrounds */
         .priority-select {
-            width: 60px;
-            padding: 6px 8px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 12px;
+            width: 75px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 30px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
-            background: white;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            height: 40px;
+        }
+
+        .priority-select[value="1"] {
+            background: #e94560;
+        }
+
+        .priority-select[value="2"] {
+            background: #f39c12;
+        }
+
+        .priority-select[value="3"] {
+            background: #27ae60;
         }
 
         .priority-select:hover {
-            border-color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .priority-select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        .priority-select option {
+            background: white;
+            color: #333;
+            padding: 8px;
         }
 
         .priority-select option[value="1"] {
@@ -284,12 +304,12 @@
         /* Go to Task button */
         .goto-task-btn {
             padding: 6px 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
+            background: linear-gradient(135deg, #fff 0%, #fff 100%);
+            color: #0284c7;
+            border: 1px solid #0284c7;
+            border-radius: 24px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 400;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             white-space: nowrap;
@@ -338,9 +358,11 @@
         }
 
         .subtask-row td {
-            padding-left: 40px;
             font-size: 14px;
-            border-left: 3px solid #667eea;
+        }
+
+        .subtask-row td:first-child {
+            padding-left: 15px;
         }
 
         .subtask-row .task-name {
@@ -404,7 +426,7 @@
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-end;
         }
 
         .task-meta-item {
@@ -430,6 +452,7 @@
             cursor: pointer;
             background: white;
             min-width: 180px;
+            height: 42px;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
@@ -462,6 +485,75 @@
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Date input for group tasks */
+        .date-input {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+            min-width: 150px;
+            height: 42px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .date-input:hover {
+            border-color: #667eea;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Task done checkbox for group tasks */
+        .task-done-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        /* Table checkboxes - make them larger */
+        table td input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        /* Full-width task meta item for notes */
+        .task-meta-item.full-width {
+            flex: 1 1 100%;
+        }
+
+        /* Subtask meta section */
+        .subtask-meta {
+            display: flex;
+            gap: 25px;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .subtask-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .subtask-meta-item label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         /* Code blocks */
@@ -882,8 +974,8 @@
             <a href="detail_plans.html" class="save-btn secondary" style="text-decoration: none;">📚 Best Practices</a>
             <button class="save-btn secondary" onclick="openGanttChart()">📊 Gantt Chart</button>
             <span class="save-status" id="saveStatus">✓ Saved</span>
-            <button class="save-btn secondary" onclick="exportHTML()">📥 Export HTML</button>
-            <button class="save-btn primary" onclick="saveProgress()">💾 Save Progress</button>
+            <a href="https://login.brevo.com" target="_blank" class="save-btn secondary" style="text-decoration:none;display:inline-block;">📧 Open Brevo</a>
+            <a href="https://tabular.email/auth/login" target="_blank" class="save-btn primary" style="text-decoration:none;display:inline-block;">📊 Open Tabular</a>
         </div>
     </div>
 
@@ -1176,8 +1268,22 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-1.1">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-1.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-1.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-1.1" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-1.1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1188,9 +1294,27 @@
 
             <h4>Email 1: Introduction</h4>
             <div class="task-item">
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="task-1.1-email1" data-task="1.1-email1" onchange="updateTaskStyle(this); saveProgress()">
-                    <label for="task-1.1-email1">Done</label>
+                <div class="subtask-meta">
+                    <div class="subtask-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="subtask-1.1.1" onchange="updateDetailPriority(this)">
+                            <option value="1">P1</option>
+                            <option value="2">P2</option>
+                            <option value="3" selected>P3</option>
+                        </select>
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>Start:</label>
+                        <input type="date" class="date-input" data-subtask-start-date="subtask-1.1.1" onchange="saveSubtaskDates()">
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>End:</label>
+                        <input type="date" class="date-input" data-subtask-end-date="subtask-1.1.1" onchange="saveSubtaskDates()">
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" id="task-1.1-email1" class="task-done-checkbox" data-task="subtask-1.1.1" onchange="updateTaskStyle(this); saveProgress()">
+                    </div>
                 </div>
                 <p><strong>Subject A:</strong> "Dr {{first_name}}, still doing PBS forms by hand?"</p>
                 <p><strong>Subject B:</strong> "Gastro PBS forms — there's a better way"</p>
@@ -1305,8 +1429,22 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-1.2">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-1.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-1.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-1.2" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-1.2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1403,8 +1541,22 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-1.3">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-1.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-1.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-1.3" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-1.3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1521,8 +1673,22 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-1.4">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-1.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-1.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-1.4" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-1.4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1628,8 +1794,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-2.1">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-2.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-2.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-2.1" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-2.1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1726,8 +1906,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-2.2">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-2.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-2.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-2.2" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-2.2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1864,8 +2058,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-2.3">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-2.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-2.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-2.3" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-2.3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -1981,8 +2189,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-3.1">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-3.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-3.1" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-3.1" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-3.1" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -2079,8 +2301,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-3.2">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-3.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-3.2" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-3.2" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-3.2" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -2173,8 +2409,22 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-3.3">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-3.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-3.3" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-3.3" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-3.3" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -2322,8 +2572,22 @@ DM me if you want to see how it works.
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Duration:</label>
-                        <span class="date-range-display" id="date-range-display-summary-3.4">Not scheduled</span>
+                        <label>Start Date:</label>
+                        <input type="date" class="date-input" data-task-start-date="summary-3.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>End Date:</label>
+                        <input type="date" class="date-input" data-task-end-date="summary-3.4" onchange="saveDateProgress()">
+                    </div>
+                    <div class="task-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" class="task-done-checkbox" data-task="summary-3.4" onchange="saveProgress()">
+                    </div>
+                </div>
+                <div class="task-meta-row">
+                    <div class="task-meta-item full-width">
+                        <label>Notes:</label>
+                        <textarea class="notes-field" data-comment="summary-3.4" placeholder="Add notes here..." onchange="saveProgress()"></textarea>
                     </div>
                 </div>
             </div>
@@ -2568,70 +2832,235 @@ DM for sponsor info.
     <button class="back-to-top" onclick="scrollToTop()">↑</button>
 
     <script>
-        // Load saved progress on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProgress();
-        });
+        // ===== UNIFIED DATA MANAGEMENT SYSTEM =====
+        // Single source of truth for all task data
+        const STORAGE_KEY = 'marketing-tasks-unified';
 
-        // Save progress to localStorage
+        // Get all data from localStorage
+        function getAllData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) {
+                return {
+                    tasks: {},
+                    lastUpdated: null,
+                    lastUpdatedBy: null
+                };
+            }
+            return JSON.parse(saved);
+        }
+
+        // Save all data to localStorage
+        function saveAllData(data) {
+            data.lastUpdated = new Date().toISOString();
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            if (status) {
+                status.textContent = '✓ Saved ' + new Date().toLocaleTimeString();
+                status.classList.add('show');
+                setTimeout(() => status.classList.remove('show'), 2000);
+            }
+        }
+
+        // Update a single field for a task
+        function saveTaskField(taskId, field, value) {
+            const data = getAllData();
+
+            if (!data.tasks[taskId]) {
+                data.tasks[taskId] = {};
+            }
+
+            data.tasks[taskId][field] = value;
+            saveAllData(data);
+
+            // Sync UI for this task/field
+            syncUIForTask(taskId, field, value);
+        }
+
+        // Sync UI elements for a specific task and field
+        function syncUIForTask(taskId, field, value) {
+            switch(field) {
+                case 'done':
+                    // Update ALL checkboxes with this task ID
+                    document.querySelectorAll(`input[type="checkbox"][data-task="${taskId}"]`).forEach(cb => {
+                        cb.checked = value;
+                        updateTaskStyle(cb);
+                    });
+                    break;
+
+                case 'notes':
+                    // Update ALL note/comment fields with this task ID
+                    document.querySelectorAll(`[data-comment="${taskId}"]`).forEach(el => {
+                        if (el.value !== value) {
+                            el.value = value;
+                            if (el.tagName === 'TEXTAREA') {
+                                autoExpandTextarea(el);
+                            }
+                        }
+                    });
+                    break;
+
+                case 'priority':
+                    // Update ALL priority selects for this task
+                    document.querySelectorAll(`select[data-priority-for="${taskId}"]`).forEach(select => {
+                        select.value = value;
+                        updatePriorityColor(select);
+                    });
+                    document.querySelectorAll(`select[data-detail-priority-for="${taskId}"]`).forEach(select => {
+                        select.value = value;
+                    });
+                    break;
+
+                case 'startDate':
+                    // Update ALL start date inputs for this task
+                    document.querySelectorAll(`input[data-task-start-date="${taskId}"], input[data-subtask-start-date="${taskId}"]`).forEach(input => {
+                        input.value = value || '';
+                    });
+                    break;
+
+                case 'endDate':
+                    // Update ALL end date inputs for this task
+                    document.querySelectorAll(`input[data-task-end-date="${taskId}"], input[data-subtask-end-date="${taskId}"]`).forEach(input => {
+                        input.value = value || '';
+                    });
+                    break;
+            }
+        }
+
+        // Load all data and populate UI
+        function loadAllData() {
+            const data = getAllData();
+
+            if (!data.tasks || Object.keys(data.tasks).length === 0) {
+                // Try to migrate old data if exists
+                migrateOldData();
+                return;
+            }
+
+            // Load each task's data
+            Object.entries(data.tasks).forEach(([taskId, taskData]) => {
+                if (taskData.done !== undefined) {
+                    syncUIForTask(taskId, 'done', taskData.done);
+                }
+                if (taskData.notes !== undefined) {
+                    syncUIForTask(taskId, 'notes', taskData.notes);
+                }
+                if (taskData.priority !== undefined) {
+                    syncUIForTask(taskId, 'priority', taskData.priority);
+                }
+                if (taskData.startDate !== undefined) {
+                    syncUIForTask(taskId, 'startDate', taskData.startDate);
+                }
+                if (taskData.endDate !== undefined) {
+                    syncUIForTask(taskId, 'endDate', taskData.endDate);
+                }
+            });
+        }
+
+        // Migrate old localStorage data to new unified structure
+        function migrateOldData() {
+            const oldTasks = localStorage.getItem('petra-marketing-tasks');
+            const oldPriorities = localStorage.getItem('petra-task-priorities');
+            const oldDates = localStorage.getItem('petra-subtask-dates');
+            const oldDateProgress = localStorage.getItem('petra-date-progress');
+
+            if (!oldTasks && !oldPriorities && !oldDates && !oldDateProgress) {
+                return; // No old data to migrate
+            }
+
+            const unified = { tasks: {} };
+
+            // Migrate task completion and comments
+            if (oldTasks) {
+                const data = JSON.parse(oldTasks);
+                if (data.tasks) {
+                    Object.entries(data.tasks).forEach(([id, done]) => {
+                        if (!unified.tasks[id]) unified.tasks[id] = {};
+                        unified.tasks[id].done = done;
+                    });
+                }
+                if (data.comments) {
+                    Object.entries(data.comments).forEach(([id, notes]) => {
+                        if (!unified.tasks[id]) unified.tasks[id] = {};
+                        unified.tasks[id].notes = notes;
+                    });
+                }
+            }
+
+            // Migrate priorities
+            if (oldPriorities) {
+                const priorities = JSON.parse(oldPriorities);
+                Object.entries(priorities).forEach(([id, priority]) => {
+                    if (!unified.tasks[id]) unified.tasks[id] = {};
+                    unified.tasks[id].priority = priority;
+                });
+            }
+
+            // Migrate subtask dates
+            if (oldDates) {
+                const data = JSON.parse(oldDates);
+                if (data.subtaskDates) {
+                    Object.entries(data.subtaskDates).forEach(([id, dates]) => {
+                        if (!unified.tasks[id]) unified.tasks[id] = {};
+                        if (dates.startDate) unified.tasks[id].startDate = dates.startDate;
+                        if (dates.endDate) unified.tasks[id].endDate = dates.endDate;
+                    });
+                }
+            }
+
+            // Migrate task dates (group tasks)
+            if (oldDateProgress) {
+                const data = JSON.parse(oldDateProgress);
+                if (data.taskDates) {
+                    Object.entries(data.taskDates).forEach(([id, dates]) => {
+                        if (!unified.tasks[id]) unified.tasks[id] = {};
+                        if (dates.startDate) unified.tasks[id].startDate = dates.startDate;
+                        if (dates.endDate) unified.tasks[id].endDate = dates.endDate;
+                    });
+                }
+            }
+
+            // Save unified data
+            saveAllData(unified);
+
+            // Load the migrated data into UI
+            loadAllData();
+
+            console.log('✓ Migrated old data to unified structure');
+        }
+
+        // Wrapper functions for backwards compatibility
         function saveProgress() {
-            const data = {
-                tasks: {},
-                comments: {},
-                savedAt: new Date().toISOString()
-            };
+            // Collect all current values and save
+            const data = getAllData();
 
             // Save all checkboxes
             document.querySelectorAll('input[type="checkbox"][data-task]').forEach(cb => {
-                data.tasks[cb.dataset.task] = cb.checked;
+                const taskId = cb.dataset.task;
+                if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                data.tasks[taskId].done = cb.checked;
             });
 
             // Save all comments
             document.querySelectorAll('[data-comment]').forEach(el => {
-                data.comments[el.dataset.comment] = el.value;
+                const taskId = el.dataset.comment;
+                if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                data.tasks[taskId].notes = el.value;
             });
 
-            localStorage.setItem('petra-marketing-tasks', JSON.stringify(data));
-            
-            // Show save status
-            const status = document.getElementById('saveStatus');
-            status.textContent = '✓ Saved ' + new Date().toLocaleTimeString();
-            status.classList.add('show');
-            setTimeout(() => status.classList.remove('show'), 2000);
+            saveAllData(data);
         }
 
-        // Load progress from localStorage
+        // Legacy function - now uses unified system
         function loadProgress() {
-            const saved = localStorage.getItem('petra-marketing-tasks');
-            if (!saved) return;
-
-            const data = JSON.parse(saved);
-
-            // Restore checkboxes
-            if (data.tasks) {
-                Object.entries(data.tasks).forEach(([key, value]) => {
-                    const cb = document.querySelector(`input[data-task="${key}"]`);
-                    if (cb) {
-                        cb.checked = value;
-                        updateTaskStyle(cb);
-                    }
-                });
-            }
-
-            // Restore comments
-            if (data.comments) {
-                Object.entries(data.comments).forEach(([key, value]) => {
-                    const el = document.querySelector(`[data-comment="${key}"]`);
-                    if (el) {
-                        el.value = value;
-                        // Auto-expand textarea if it has content
-                        if (el.tagName === 'TEXTAREA' && value) {
-                            autoExpandTextarea(el);
-                        }
-                    }
-                });
-            }
+            loadAllData();
         }
+
+        // Load saved progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllData();
+        });
 
         // Update task item styling when checked
         function updateTaskStyle(checkbox) {
@@ -2745,45 +3174,55 @@ DM for sponsor info.
         }
 
         // Parse tasks from the page into Gantt data structure
+        // Parse tasks to Gantt (unified data source)
         function parseTasksToGantt() {
             ganttData = [];
-            const saved = localStorage.getItem('petra-marketing-tasks');
-            const savedData = saved ? JSON.parse(saved) : {};
-            const ganttSaved = localStorage.getItem('petra-gantt-data');
-            const ganttSavedData = ganttSaved ? JSON.parse(ganttSaved) : {};
+            const data = getAllData(); // Use unified data source
 
-            // Get all task rows from summary table and detail sections
-            const summaryRows = document.querySelectorAll('#summary table tbody tr');
+            // Get all task rows from summary table (only main tasks, not subtasks)
+            const summaryRows = document.querySelectorAll('#summary table tbody tr.expandable-task');
 
             // Starting date for cascading tasks (January 31, 2026)
             let cascadeDate = new Date('2026-01-31');
 
             summaryRows.forEach((row, index) => {
                 const cells = row.cells;
-                if (cells.length >= 5) {
-                    const priorityBadge = cells[0].querySelector('.priority-badge');
-                    const taskName = cells[1].textContent.trim();
+                if (cells.length >= 6) {
+                    // Table structure: [0]=Priority select, [1]=Task name, [2]=Platform, [3]=Details, [4]=Go to Task btn, [5]=Checkbox, [6]=Notes
+                    const prioritySelect = cells[0].querySelector('.priority-select');
+                    const taskNameEl = cells[1].querySelector('.task-name');
+                    const taskName = taskNameEl ? taskNameEl.textContent.trim() : cells[1].textContent.trim();
                     const platform = cells[2].textContent.trim();
-                    const checkbox = cells[4].querySelector('input[type="checkbox"]');
+                    const checkbox = cells[5].querySelector('input[type="checkbox"]');
 
                     if (checkbox) {
                         const taskId = checkbox.dataset.task;
-                        const priority = priorityBadge ? priorityBadge.className.match(/p(\d)/)[1] : '3';
-                        const isCompleted = savedData.tasks && savedData.tasks[taskId] ? savedData.tasks[taskId] : false;
+                        const taskData = data.tasks[taskId] || {};
 
-                        // Get saved Gantt data or calculate cascading defaults
-                        const ganttTaskData = ganttSavedData[taskId] || {};
-                        const duration = ganttTaskData.duration || (priority === '1' ? 3 : priority === '2' ? 5 : 7);
+                        // Get priority from unified data or select dropdown
+                        const priority = taskData.priority || (prioritySelect ? prioritySelect.value : '3');
+                        const isCompleted = taskData.done || false;
 
+                        // Calculate duration from start/end dates if they exist
                         let startDate;
-                        if (ganttTaskData.startDate) {
-                            // Use saved start date
-                            startDate = ganttTaskData.startDate;
-                        } else {
-                            // Use cascading date for new tasks
-                            startDate = cascadeDate.toISOString().split('T')[0];
+                        let duration;
 
-                            // Calculate next cascade date (current start + duration)
+                        if (taskData.startDate && taskData.endDate) {
+                            // Use actual dates from task
+                            startDate = taskData.startDate;
+                            const start = new Date(taskData.startDate);
+                            const end = new Date(taskData.endDate);
+                            duration = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+                        } else if (taskData.startDate) {
+                            // Has start date but no end - use default duration
+                            startDate = taskData.startDate;
+                            duration = priority === '1' ? 3 : priority === '2' ? 5 : 7;
+                        } else {
+                            // No dates - use cascading defaults
+                            startDate = cascadeDate.toISOString().split('T')[0];
+                            duration = priority === '1' ? 3 : priority === '2' ? 5 : 7;
+
+                            // Calculate next cascade date
                             cascadeDate = new Date(cascadeDate);
                             cascadeDate.setDate(cascadeDate.getDate() + duration);
                         }
@@ -2922,10 +3361,10 @@ DM for sponsor info.
             controls.className = 'gantt-edit-controls active';
             controls.onclick = (e) => e.stopPropagation();
 
-            // Get saved notes from localStorage
-            const saved = localStorage.getItem('petra-marketing-tasks');
-            const savedData = saved ? JSON.parse(saved) : {};
-            const notes = savedData.comments && savedData.comments[taskId] ? savedData.comments[taskId] : '';
+            // Get saved notes from unified data
+            const data = getAllData();
+            const taskData = data.tasks[taskId] || {};
+            const notes = taskData.notes || '';
 
             controls.innerHTML = `
                 <div class="gantt-edit-field">
@@ -2984,44 +3423,43 @@ DM for sponsor info.
             const newPriority = parseInt(document.getElementById(`edit-priority-${taskId}`).value);
             const newNotes = document.getElementById(`edit-notes-${taskId}`)?.value || '';
 
-            // Update task
+            // Update local gantt task
             task.startDate = newStart;
             task.duration = newDuration;
             task.priority = newPriority;
 
-            // Save notes to the main task data
-            const saved = localStorage.getItem('petra-marketing-tasks');
-            const savedData = saved ? JSON.parse(saved) : { tasks: {}, comments: {} };
-            if (!savedData.comments) savedData.comments = {};
-            savedData.comments[taskId] = newNotes;
-            localStorage.setItem('petra-marketing-tasks', JSON.stringify(savedData));
+            // Calculate end date from start + duration
+            const startDateObj = new Date(newStart);
+            const endDateObj = new Date(startDateObj);
+            endDateObj.setDate(endDateObj.getDate() + newDuration);
+            const endDate = endDateObj.toISOString().split('T')[0];
 
-            // Update notes field in main table if it exists
-            const textarea = document.querySelector(`textarea[data-comment="${taskId}"]`);
-            if (textarea) textarea.value = newNotes;
+            // Save ALL changes using unified system
+            const data = getAllData();
+            if (!data.tasks[taskId]) data.tasks[taskId] = {};
 
-            // Save to localStorage
-            saveGanttData();
+            data.tasks[taskId].startDate = newStart;
+            data.tasks[taskId].endDate = endDate;
+            data.tasks[taskId].priority = newPriority;
+            data.tasks[taskId].notes = newNotes;
 
-            // Update priority badge in main table if changed
-            updateMainTablePriority(taskId, newPriority);
+            saveAllData(data);
+
+            // Sync UI for all fields
+            syncUIForTask(taskId, 'startDate', newStart);
+            syncUIForTask(taskId, 'endDate', endDate);
+            syncUIForTask(taskId, 'priority', newPriority);
+            syncUIForTask(taskId, 'notes', newNotes);
 
             // Close popup and re-render
             closeEditPopup(event);
             renderGanttChart();
         }
 
-        // Save Gantt data to localStorage
+        // Save Gantt data (deprecated - now uses unified system)
         function saveGanttData() {
-            const ganttSaveData = {};
-            ganttData.forEach(task => {
-                ganttSaveData[task.id] = {
-                    startDate: task.startDate,
-                    duration: task.duration,
-                    priority: task.priority
-                };
-            });
-            localStorage.setItem('petra-gantt-data', JSON.stringify(ganttSaveData));
+            // No longer needed - data is saved through unified system
+            // Keeping function to avoid breaking references
         }
 
         // Update priority badge in main table
@@ -3187,13 +3625,18 @@ DM for sponsor info.
                     subtaskRow.dataset.taskId = subtask.taskId;
 
                     subtaskRow.innerHTML = `
-                        <td></td>
+                        <td>
+                            <select class="priority-select" data-priority-for="${subtask.taskId}" value="3" onchange="updatePriority(this, event)" onclick="event.stopPropagation()">
+                                <option value="1">P1</option>
+                                <option value="2">P2</option>
+                                <option value="3" selected>P3</option>
+                            </select>
+                        </td>
                         <td><span class="task-name">↳ ${subtask.name}</span></td>
                         <td>${subtask.type}</td>
                         <td>-</td>
-                        <td class="subtask-dates">
-                            <input type="date" class="subtask-date-input" data-subtask-start="${subtask.taskId}" onchange="saveSubtaskDates(); calculateAllDateRanges()" onclick="event.stopPropagation()" placeholder="Start">
-                            <input type="date" class="subtask-date-input" data-subtask-end="${subtask.taskId}" onchange="saveSubtaskDates(); calculateAllDateRanges()" onclick="event.stopPropagation()" placeholder="End">
+                        <td>
+                            <button class="goto-task-btn" onclick="goToTask('${subtask.taskId.replace('subtask', 'task')}', event)">Go to Task</button>
                         </td>
                         <td><input type="checkbox" data-task="${subtask.taskId}" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
                         <td><textarea data-comment="${subtask.taskId}" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
@@ -3207,12 +3650,26 @@ DM for sponsor info.
                     expandIcon.classList.add('expanded');
                 }
 
+                // Update priority colors for newly created subtask selects
+                subtasks.forEach(subtask => {
+                    const select = document.querySelector(`select[data-priority-for="${subtask.taskId}"]`);
+                    if (select) {
+                        updatePriorityColor(select);
+                    }
+                });
+
                 // Load saved progress for subtasks
                 loadProgress();
             }
         }
 
-        // Update priority
+        // Update priority select background color based on value
+        function updatePriorityColor(selectElement) {
+            // Remove existing color classes if any
+            selectElement.setAttribute('value', selectElement.value);
+        }
+
+        // Update priority (unified system)
         function updatePriority(selectElement, event) {
             if (event) {
                 event.stopPropagation();
@@ -3221,23 +3678,8 @@ DM for sponsor info.
             const taskId = selectElement.dataset.priorityFor;
             const newPriority = selectElement.value;
 
-            // Save to localStorage
-            const saved = localStorage.getItem('petra-task-priorities');
-            const priorities = saved ? JSON.parse(saved) : {};
-            priorities[taskId] = newPriority;
-            localStorage.setItem('petra-task-priorities', JSON.stringify(priorities));
-
-            // Visual feedback
-            selectElement.style.borderColor = '#27ae60';
-            setTimeout(() => {
-                selectElement.style.borderColor = '';
-            }, 300);
-
-            // Show save status
-            const status = document.getElementById('saveStatus');
-            status.textContent = '✓ Priority updated';
-            status.classList.add('show');
-            setTimeout(() => status.classList.remove('show'), 2000);
+            // Save using unified system
+            saveTaskField(taskId, 'priority', newPriority);
         }
 
         // Go to task detail
@@ -3258,161 +3700,115 @@ DM for sponsor info.
             }
         }
 
+        // Create subtask meta section component
+        function createSubtaskMeta(subtaskId, checkboxId) {
+            return `
+                <div class="subtask-meta">
+                    <div class="subtask-meta-item">
+                        <label>Priority:</label>
+                        <select class="priority-select-detail" data-detail-priority-for="${subtaskId}" onchange="updateDetailPriority(this)">
+                            <option value="1">P1</option>
+                            <option value="2">P2</option>
+                            <option value="3" selected>P3</option>
+                        </select>
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>Start:</label>
+                        <input type="date" class="date-input" data-subtask-start-date="${subtaskId}" onchange="saveSubtaskDates()">
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>End:</label>
+                        <input type="date" class="date-input" data-subtask-end-date="${subtaskId}" onchange="saveSubtaskDates()">
+                    </div>
+                    <div class="subtask-meta-item">
+                        <label>Done:</label>
+                        <input type="checkbox" id="${checkboxId}" class="task-done-checkbox" data-task="${subtaskId}" onchange="updateTaskStyle(this); saveProgress()">
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize all subtasks with meta sections
+        function initializeSubtasks() {
+            // Find all task-item divs that contain checkboxes but don't have subtask-meta
+            document.querySelectorAll('.task-item').forEach(taskItem => {
+                // Skip if already has subtask-meta
+                if (taskItem.querySelector('.subtask-meta')) return;
+
+                // Find the checkbox wrapper
+                const checkboxWrapper = taskItem.querySelector('.checkbox-wrapper');
+                if (!checkboxWrapper) return;
+
+                const checkbox = checkboxWrapper.querySelector('input[type="checkbox"]');
+                if (!checkbox) return;
+
+                const checkboxId = checkbox.id;
+                const subtaskId = checkbox.dataset.task;
+
+                // Create and insert the subtask meta section
+                const metaHTML = createSubtaskMeta(subtaskId, checkboxId);
+                taskItem.insertAdjacentHTML('afterbegin', metaHTML);
+
+                // Remove the old checkbox wrapper
+                checkboxWrapper.remove();
+            });
+        }
+
         // Save subtask dates
+        // Save subtask dates (unified system)
         function saveSubtaskDates() {
-            const data = {
-                subtaskDates: {},
-                savedAt: new Date().toISOString()
-            };
+            const data = getAllData();
 
             // Save all subtask start dates
-            document.querySelectorAll('[data-subtask-start]').forEach(input => {
-                const taskId = input.dataset.subtaskStart;
-                if (taskId && input.value) {
-                    if (!data.subtaskDates[taskId]) data.subtaskDates[taskId] = {};
-                    data.subtaskDates[taskId].startDate = input.value;
+            document.querySelectorAll('[data-subtask-start-date]').forEach(input => {
+                const taskId = input.dataset.subtaskStartDate;
+                if (taskId) {
+                    if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                    data.tasks[taskId].startDate = input.value || null;
                 }
             });
 
             // Save all subtask end dates
-            document.querySelectorAll('[data-subtask-end]').forEach(input => {
-                const taskId = input.dataset.subtaskEnd;
-                if (taskId && input.value) {
-                    if (!data.subtaskDates[taskId]) data.subtaskDates[taskId] = {};
-                    data.subtaskDates[taskId].endDate = input.value;
+            document.querySelectorAll('[data-subtask-end-date]').forEach(input => {
+                const taskId = input.dataset.subtaskEndDate;
+                if (taskId) {
+                    if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                    data.tasks[taskId].endDate = input.value || null;
                 }
             });
 
-            localStorage.setItem('petra-subtask-dates', JSON.stringify(data));
-
-            // Show save status
-            const status = document.getElementById('saveStatus');
-            status.textContent = '✓ Dates saved';
-            status.classList.add('show');
-            setTimeout(() => status.classList.remove('show'), 2000);
+            saveAllData(data);
         }
 
-        // Load subtask dates
+        // Load subtask dates (now handled by loadAllData - kept for backwards compatibility)
         function loadSubtaskDates() {
-            const saved = localStorage.getItem('petra-subtask-dates');
-            if (!saved) return;
-
-            const data = JSON.parse(saved);
-
-            if (data.subtaskDates) {
-                Object.entries(data.subtaskDates).forEach(([taskId, dates]) => {
-                    if (dates.startDate) {
-                        const input = document.querySelector(`[data-subtask-start="${taskId}"]`);
-                        if (input) input.value = dates.startDate;
-                    }
-                    if (dates.endDate) {
-                        const input = document.querySelector(`[data-subtask-end="${taskId}"]`);
-                        if (input) input.value = dates.endDate;
-                    }
-                });
-            }
+            // This is now handled by the unified loadAllData() function
+            // Keeping this function to avoid breaking existing code
         }
 
-        // Calculate date range for a single task based on its subtasks
-        function calculateTaskDateRange(taskId) {
-            const subtasks = subtaskData[taskId] || [];
-            if (subtasks.length === 0) return null;
+        // Date calculation functions removed - subtask dates no longer aggregate to group tasks
 
-            let minStart = null;
-            let maxEnd = null;
-
-            subtasks.forEach(subtask => {
-                const startInput = document.querySelector(`[data-subtask-start="${subtask.taskId}"]`);
-                const endInput = document.querySelector(`[data-subtask-end="${subtask.taskId}"]`);
-
-                if (startInput && startInput.value) {
-                    const startDate = new Date(startInput.value);
-                    if (!minStart || startDate < minStart) {
-                        minStart = startDate;
-                    }
-                }
-
-                if (endInput && endInput.value) {
-                    const endDate = new Date(endInput.value);
-                    if (!maxEnd || endDate > maxEnd) {
-                        maxEnd = endDate;
-                    }
-                }
-            });
-
-            if (!minStart && !maxEnd) return null;
-
-            return {
-                startDate: minStart,
-                endDate: maxEnd
-            };
-        }
-
-        // Calculate and display date ranges for all tasks
-        function calculateAllDateRanges() {
-            Object.keys(subtaskData).forEach(taskId => {
-                const range = calculateTaskDateRange(taskId);
-                const displayElement = document.getElementById(`date-range-display-${taskId}`);
-
-                if (displayElement) {
-                    if (range && (range.startDate || range.endDate)) {
-                        const formatDate = (date) => {
-                            if (!date) return '?';
-                            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                            return `${months[date.getMonth()]} ${date.getDate()}`;
-                        };
-
-                        const startStr = range.startDate ? formatDate(range.startDate) : '?';
-                        const endStr = range.endDate ? formatDate(range.endDate) : '?';
-
-                        displayElement.textContent = `${startStr} - ${endStr}`;
-                        displayElement.classList.add('scheduled');
-                    } else {
-                        displayElement.textContent = 'Not scheduled';
-                        displayElement.classList.remove('scheduled');
-                    }
-                }
-            });
-        }
-
-        // Load saved priorities on page load
+        // Initialize page - load all data and setup
         document.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('petra-task-priorities');
-            if (saved) {
-                const priorities = JSON.parse(saved);
-                Object.entries(priorities).forEach(([taskId, priority]) => {
-                    const select = document.querySelector(`select[data-priority-for="${taskId}"]`);
-                    if (select) {
-                        select.value = priority;
-                    }
-                    // Also update detail view priority
-                    const detailSelect = document.querySelector(`select[data-detail-priority-for="${taskId}"]`);
-                    if (detailSelect) {
-                        detailSelect.value = priority;
-                    }
-                });
-            }
+            // Initialize all subtask meta sections first
+            initializeSubtasks();
 
-            // Load saved dates
-            loadDateProgress();
-            loadSubtaskDates();
+            // Load all data using unified system (this replaces individual load functions)
+            loadAllData();
 
-            // Calculate date ranges on load (after a brief delay to ensure all data is loaded)
-            setTimeout(() => {
-                calculateAllDateRanges();
-            }, 500);
+            // Update colors for all priority selects on initial load
+            document.querySelectorAll('.priority-select').forEach(select => {
+                updatePriorityColor(select);
+            });
         });
 
-        // Update priority from detail view
+        // Update priority from detail view (unified system)
         function updateDetailPriority(selectElement) {
             const taskId = selectElement.dataset.detailPriorityFor;
             const newPriority = selectElement.value;
 
-            // Save to localStorage
-            const saved = localStorage.getItem('petra-task-priorities');
-            const priorities = saved ? JSON.parse(saved) : {};
-            priorities[taskId] = newPriority;
-            localStorage.setItem('petra-task-priorities', JSON.stringify(priorities));
+            // Save using unified system
+            saveTaskField(taskId, 'priority', newPriority);
 
             // Update the main table priority select
             const tableSelect = document.querySelector(`select[data-priority-for="${taskId}"]`);
@@ -3433,67 +3829,35 @@ DM for sponsor info.
             setTimeout(() => status.classList.remove('show'), 2000);
         }
 
-        // Save date progress
+        // Save date progress (unified system - handles both task and subtask dates)
         function saveDateProgress() {
-            const data = {
-                startDates: {},
-                endDates: {},
-                savedAt: new Date().toISOString()
-            };
+            const data = getAllData();
 
-            // Save all start dates
-            document.querySelectorAll('[data-start-date], [data-detail-start-date]').forEach(input => {
-                const taskId = input.dataset.startDate || input.dataset.detailStartDate;
-                if (taskId && input.value) {
-                    data.startDates[taskId] = input.value;
+            // Save all task start dates (group tasks)
+            document.querySelectorAll('[data-task-start-date]').forEach(input => {
+                const taskId = input.dataset.taskStartDate;
+                if (taskId) {
+                    if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                    data.tasks[taskId].startDate = input.value || null;
                 }
             });
 
-            // Save all end dates
-            document.querySelectorAll('[data-end-date], [data-detail-end-date]').forEach(input => {
-                const taskId = input.dataset.endDate || input.dataset.detailEndDate;
-                if (taskId && input.value) {
-                    data.endDates[taskId] = input.value;
+            // Save all task end dates (group tasks)
+            document.querySelectorAll('[data-task-end-date]').forEach(input => {
+                const taskId = input.dataset.taskEndDate;
+                if (taskId) {
+                    if (!data.tasks[taskId]) data.tasks[taskId] = {};
+                    data.tasks[taskId].endDate = input.value || null;
                 }
             });
 
-            localStorage.setItem('petra-task-dates', JSON.stringify(data));
-
-            // Show save status
-            const status = document.getElementById('saveStatus');
-            status.textContent = '✓ Dates saved';
-            status.classList.add('show');
-            setTimeout(() => status.classList.remove('show'), 2000);
+            saveAllData(data);
         }
 
-        // Load date progress
+        // Load date progress (now handled by loadAllData - kept for backwards compatibility)
         function loadDateProgress() {
-            const saved = localStorage.getItem('petra-task-dates');
-            if (!saved) return;
-
-            const data = JSON.parse(saved);
-
-            // Restore start dates
-            if (data.startDates) {
-                Object.entries(data.startDates).forEach(([taskId, value]) => {
-                    // Update both table and detail view
-                    const inputs = document.querySelectorAll(`[data-start-date="${taskId}"], [data-detail-start-date="${taskId}"]`);
-                    inputs.forEach(input => {
-                        if (input) input.value = value;
-                    });
-                });
-            }
-
-            // Restore end dates
-            if (data.endDates) {
-                Object.entries(data.endDates).forEach(([taskId, value]) => {
-                    // Update both table and detail view
-                    const inputs = document.querySelectorAll(`[data-end-date="${taskId}"], [data-detail-end-date="${taskId}"]`);
-                    inputs.forEach(input => {
-                        if (input) input.value = value;
-                    });
-                });
-            }
+            // This is now handled by the unified loadAllData() function
+            // Keeping this function to avoid breaking existing code
         }
     </script>
 </body>
