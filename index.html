@@ -348,6 +348,49 @@
             color: #555;
         }
 
+        /* Subtask date inputs */
+        .subtask-dates {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .subtask-date-input {
+            padding: 4px 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 110px;
+            background: white;
+            transition: border-color 0.2s;
+        }
+
+        .subtask-date-input:hover {
+            border-color: #667eea;
+        }
+
+        .subtask-date-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Date range display */
+        .date-range-display {
+            font-size: 14px;
+            color: #666;
+            padding: 8px 12px;
+            background: #f0f4ff;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        .date-range-display.scheduled {
+            color: #667eea;
+            font-weight: 600;
+        }
+
         /* Task metadata section in detail view */
         .task-meta {
             background: #f0f4ff;
@@ -1133,12 +1176,8 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.1" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.1" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-1.1">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1266,12 +1305,8 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.2" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.2" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-1.2">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1368,12 +1403,8 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.3" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.3" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-1.3">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1490,12 +1521,8 @@
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-1.4" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-1.4" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-1.4">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1601,12 +1628,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.1" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.1" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-2.1">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1703,12 +1726,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.2" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.2" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-2.2">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1845,12 +1864,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-2.3" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-2.3" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-2.3">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -1966,12 +1981,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.1" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.1" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-3.1">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -2068,12 +2079,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.2" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.2" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-3.2">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -2166,12 +2173,8 @@ Descriptions:
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.3" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.3" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-3.3">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -2319,12 +2322,8 @@ DM me if you want to see how it works.
                         </select>
                     </div>
                     <div class="task-meta-item">
-                        <label>Start Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-start-date="summary-3.4" onchange="saveDateProgress()">
-                    </div>
-                    <div class="task-meta-item">
-                        <label>End Date:</label>
-                        <input type="date" class="date-input-detail" data-detail-end-date="summary-3.4" onchange="saveDateProgress()">
+                        <label>Duration:</label>
+                        <span class="date-range-display" id="date-range-display-summary-3.4">Not scheduled</span>
                     </div>
                 </div>
             </div>
@@ -3057,78 +3056,78 @@ DM for sponsor info.
         // Subtask data structure
         const subtaskData = {
             'summary-1.1': [
-                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.1.1' },
-                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.1.2' },
-                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.1.3' },
-                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.1.4' }
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.1.1', startDate: null, endDate: null },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.1.2', startDate: null, endDate: null },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.1.3', startDate: null, endDate: null },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.1.4', startDate: null, endDate: null }
             ],
             'summary-1.2': [
-                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.2.1' },
-                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.2.2' },
-                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.2.3' },
-                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.2.4' }
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-1.2.1', startDate: null, endDate: null },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-1.2.2', startDate: null, endDate: null },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-1.2.3', startDate: null, endDate: null },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-1.2.4', startDate: null, endDate: null }
             ],
             'summary-1.3': [
-                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.3.1' },
-                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.3.2' },
-                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.3.3' }
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.3.1', startDate: null, endDate: null },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.3.2', startDate: null, endDate: null },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.3.3', startDate: null, endDate: null }
             ],
             'summary-1.4': [
-                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.4.1' },
-                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.4.2' },
-                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.4.3' }
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-1.4.1', startDate: null, endDate: null },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-1.4.2', startDate: null, endDate: null },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-1.4.3', startDate: null, endDate: null }
             ],
             'summary-2.1': [
-                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-2.1.1' },
-                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-2.1.2' },
-                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-2.1.3' },
-                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-2.1.4' }
+                { name: 'Email 1: Introduction', type: 'Email', taskId: 'subtask-2.1.1', startDate: null, endDate: null },
+                { name: 'Email 2: Features', type: 'Email', taskId: 'subtask-2.1.2', startDate: null, endDate: null },
+                { name: 'Email 3: Success Stories', type: 'Email', taskId: 'subtask-2.1.3', startDate: null, endDate: null },
+                { name: 'Email 4: Special Offer', type: 'Email', taskId: 'subtask-2.1.4', startDate: null, endDate: null }
             ],
             'summary-2.2': [
-                { name: 'Specialty Email 1', type: 'Email', taskId: 'subtask-2.2.1' },
-                { name: 'Specialty Email 2', type: 'Email', taskId: 'subtask-2.2.2' },
-                { name: 'Specialty Email 3', type: 'Email', taskId: 'subtask-2.2.3' },
-                { name: 'Specialty Email 4', type: 'Email', taskId: 'subtask-2.2.4' },
-                { name: 'Specialty Email 5', type: 'Email', taskId: 'subtask-2.2.5' },
-                { name: 'Specialty Email 6', type: 'Email', taskId: 'subtask-2.2.6' },
-                { name: 'Specialty Email 7', type: 'Email', taskId: 'subtask-2.2.7' }
+                { name: 'Specialty Email 1', type: 'Email', taskId: 'subtask-2.2.1', startDate: null, endDate: null },
+                { name: 'Specialty Email 2', type: 'Email', taskId: 'subtask-2.2.2', startDate: null, endDate: null },
+                { name: 'Specialty Email 3', type: 'Email', taskId: 'subtask-2.2.3', startDate: null, endDate: null },
+                { name: 'Specialty Email 4', type: 'Email', taskId: 'subtask-2.2.4', startDate: null, endDate: null },
+                { name: 'Specialty Email 5', type: 'Email', taskId: 'subtask-2.2.5', startDate: null, endDate: null },
+                { name: 'Specialty Email 6', type: 'Email', taskId: 'subtask-2.2.6', startDate: null, endDate: null },
+                { name: 'Specialty Email 7', type: 'Email', taskId: 'subtask-2.2.7', startDate: null, endDate: null }
             ],
             'summary-2.3': [
-                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-2.3.1' },
-                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-2.3.2' },
-                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-2.3.3' }
+                { name: 'Campaign Setup', type: 'Google Ads', taskId: 'subtask-2.3.1', startDate: null, endDate: null },
+                { name: 'Keyword Research', type: 'Google Ads', taskId: 'subtask-2.3.2', startDate: null, endDate: null },
+                { name: 'Ad Creation', type: 'Google Ads', taskId: 'subtask-2.3.3', startDate: null, endDate: null }
             ],
             'summary-3.1': [
-                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.1.1' },
-                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.1.2' },
-                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.1.3' },
-                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.1.4' }
+                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.1.1', startDate: null, endDate: null },
+                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.1.2', startDate: null, endDate: null },
+                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.1.3', startDate: null, endDate: null },
+                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.1.4', startDate: null, endDate: null }
             ],
             'summary-3.2': [
-                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.2.1' },
-                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.2.2' },
-                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.2.3' },
-                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.2.4' }
+                { name: 'Sponsor Email 1', type: 'Email', taskId: 'subtask-3.2.1', startDate: null, endDate: null },
+                { name: 'Sponsor Email 2', type: 'Email', taskId: 'subtask-3.2.2', startDate: null, endDate: null },
+                { name: 'Sponsor Email 3', type: 'Email', taskId: 'subtask-3.2.3', startDate: null, endDate: null },
+                { name: 'Sponsor Email 4', type: 'Email', taskId: 'subtask-3.2.4', startDate: null, endDate: null }
             ],
             'summary-3.3': [
-                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.3.1' },
-                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.3.2' },
-                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.3.3' },
-                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.3.4' },
-                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.3.5' },
-                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.3.6' },
-                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.3.7' },
-                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.3.8' }
+                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.3.1', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.3.2', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.3.3', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.3.4', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.3.5', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.3.6', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.3.7', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.3.8', startDate: null, endDate: null }
             ],
             'summary-3.4': [
-                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.4.1' },
-                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.4.2' },
-                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.4.3' },
-                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.4.4' },
-                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.4.5' },
-                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.4.6' },
-                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.4.7' },
-                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.4.8' }
+                { name: 'LinkedIn Post 1', type: 'LinkedIn', taskId: 'subtask-3.4.1', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 2', type: 'LinkedIn', taskId: 'subtask-3.4.2', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 3', type: 'LinkedIn', taskId: 'subtask-3.4.3', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 4', type: 'LinkedIn', taskId: 'subtask-3.4.4', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 5', type: 'LinkedIn', taskId: 'subtask-3.4.5', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 6', type: 'LinkedIn', taskId: 'subtask-3.4.6', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 7', type: 'LinkedIn', taskId: 'subtask-3.4.7', startDate: null, endDate: null },
+                { name: 'LinkedIn Post 8', type: 'LinkedIn', taskId: 'subtask-3.4.8', startDate: null, endDate: null }
             ]
         };
 
@@ -3192,7 +3191,10 @@ DM for sponsor info.
                         <td><span class="task-name">↳ ${subtask.name}</span></td>
                         <td>${subtask.type}</td>
                         <td>-</td>
-                        <td></td>
+                        <td class="subtask-dates">
+                            <input type="date" class="subtask-date-input" data-subtask-start="${subtask.taskId}" onchange="saveSubtaskDates(); calculateAllDateRanges()" onclick="event.stopPropagation()" placeholder="Start">
+                            <input type="date" class="subtask-date-input" data-subtask-end="${subtask.taskId}" onchange="saveSubtaskDates(); calculateAllDateRanges()" onclick="event.stopPropagation()" placeholder="End">
+                        </td>
                         <td><input type="checkbox" data-task="${subtask.taskId}" onchange="saveProgress()" onclick="event.stopPropagation()"></td>
                         <td><textarea data-comment="${subtask.taskId}" placeholder="Notes..." class="notes-field" onchange="saveProgress()" onclick="event.stopPropagation()"></textarea></td>
                     `;
@@ -3256,6 +3258,123 @@ DM for sponsor info.
             }
         }
 
+        // Save subtask dates
+        function saveSubtaskDates() {
+            const data = {
+                subtaskDates: {},
+                savedAt: new Date().toISOString()
+            };
+
+            // Save all subtask start dates
+            document.querySelectorAll('[data-subtask-start]').forEach(input => {
+                const taskId = input.dataset.subtaskStart;
+                if (taskId && input.value) {
+                    if (!data.subtaskDates[taskId]) data.subtaskDates[taskId] = {};
+                    data.subtaskDates[taskId].startDate = input.value;
+                }
+            });
+
+            // Save all subtask end dates
+            document.querySelectorAll('[data-subtask-end]').forEach(input => {
+                const taskId = input.dataset.subtaskEnd;
+                if (taskId && input.value) {
+                    if (!data.subtaskDates[taskId]) data.subtaskDates[taskId] = {};
+                    data.subtaskDates[taskId].endDate = input.value;
+                }
+            });
+
+            localStorage.setItem('petra-subtask-dates', JSON.stringify(data));
+
+            // Show save status
+            const status = document.getElementById('saveStatus');
+            status.textContent = '✓ Dates saved';
+            status.classList.add('show');
+            setTimeout(() => status.classList.remove('show'), 2000);
+        }
+
+        // Load subtask dates
+        function loadSubtaskDates() {
+            const saved = localStorage.getItem('petra-subtask-dates');
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+
+            if (data.subtaskDates) {
+                Object.entries(data.subtaskDates).forEach(([taskId, dates]) => {
+                    if (dates.startDate) {
+                        const input = document.querySelector(`[data-subtask-start="${taskId}"]`);
+                        if (input) input.value = dates.startDate;
+                    }
+                    if (dates.endDate) {
+                        const input = document.querySelector(`[data-subtask-end="${taskId}"]`);
+                        if (input) input.value = dates.endDate;
+                    }
+                });
+            }
+        }
+
+        // Calculate date range for a single task based on its subtasks
+        function calculateTaskDateRange(taskId) {
+            const subtasks = subtaskData[taskId] || [];
+            if (subtasks.length === 0) return null;
+
+            let minStart = null;
+            let maxEnd = null;
+
+            subtasks.forEach(subtask => {
+                const startInput = document.querySelector(`[data-subtask-start="${subtask.taskId}"]`);
+                const endInput = document.querySelector(`[data-subtask-end="${subtask.taskId}"]`);
+
+                if (startInput && startInput.value) {
+                    const startDate = new Date(startInput.value);
+                    if (!minStart || startDate < minStart) {
+                        minStart = startDate;
+                    }
+                }
+
+                if (endInput && endInput.value) {
+                    const endDate = new Date(endInput.value);
+                    if (!maxEnd || endDate > maxEnd) {
+                        maxEnd = endDate;
+                    }
+                }
+            });
+
+            if (!minStart && !maxEnd) return null;
+
+            return {
+                startDate: minStart,
+                endDate: maxEnd
+            };
+        }
+
+        // Calculate and display date ranges for all tasks
+        function calculateAllDateRanges() {
+            Object.keys(subtaskData).forEach(taskId => {
+                const range = calculateTaskDateRange(taskId);
+                const displayElement = document.getElementById(`date-range-display-${taskId}`);
+
+                if (displayElement) {
+                    if (range && (range.startDate || range.endDate)) {
+                        const formatDate = (date) => {
+                            if (!date) return '?';
+                            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                            return `${months[date.getMonth()]} ${date.getDate()}`;
+                        };
+
+                        const startStr = range.startDate ? formatDate(range.startDate) : '?';
+                        const endStr = range.endDate ? formatDate(range.endDate) : '?';
+
+                        displayElement.textContent = `${startStr} - ${endStr}`;
+                        displayElement.classList.add('scheduled');
+                    } else {
+                        displayElement.textContent = 'Not scheduled';
+                        displayElement.classList.remove('scheduled');
+                    }
+                }
+            });
+        }
+
         // Load saved priorities on page load
         document.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('petra-task-priorities');
@@ -3276,6 +3395,12 @@ DM for sponsor info.
 
             // Load saved dates
             loadDateProgress();
+            loadSubtaskDates();
+
+            // Calculate date ranges on load (after a brief delay to ensure all data is loaded)
+            setTimeout(() => {
+                calculateAllDateRanges();
+            }, 500);
         });
 
         // Update priority from detail view
